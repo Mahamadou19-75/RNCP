@@ -1,6 +1,6 @@
 # Criminal Stories Blog
 
-**Criminal Stories Blog**, présenté dans l’interface sous le nom **Les Petits Enquêteurs**, est un blog d’enquêtes développé pour le titre DWWM de niveau 5. Il propose des affaires résolues, des Cold Cases et des espaces de contribution.
+**Criminal Stories Blog**, présenté dans l’interface sous le nom **Les Petits Enquêteurs**, est un blog consacré aux affaires résolues et aux Cold Cases. Chaque dossier peut recevoir des commentaires et des théories.
 
 - **Visiteur** · Lire les dossiers, rechercher une affaire et consulter les contributions.
 - **Membre** · Publier une théorie ou un commentaire, proposer une histoire et interagir avec les contenus.
@@ -10,7 +10,7 @@ L’interface utilise HTML, CSS et JavaScript. Flask sert les pages et l’API s
 
 ## Démarrer sous Windows
 
-Prérequis · Python 3.13 et Git. Ouvrir PowerShell dans le dossier du dépôt.
+Prérequis · Python 3.13 et Git. Les commandes suivantes s’exécutent dans PowerShell.
 
 ```powershell
 git clone https://github.com/Mahamadou19-75/RNCP.git
@@ -22,21 +22,20 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -I -B tools/demo_persistante.py serve
 ```
 
-À la première initialisation, choisis en console privée les adresses de démonstration et les mots de passe des comptes `admin`, `Alice` et `Bob`. Le lanceur prépare six dossiers. Si tu pars d’une archive décompressée, exécute `git init` dans ce dossier avant la commande `init`.
+La commande `init` crée la base SQLite et charge six dossiers. Elle demande en console les adresses et les mots de passe des comptes locaux `admin`, `Alice` et `Bob`. Pour une installation depuis une archive, exécuter `git init` à la racine du dossier décompressé avant la commande `init`.
 
 - [Ouvrir le site](http://127.0.0.1:5066/)
 - [Ouvrir l’administration](http://127.0.0.1:5066/admin-connexion.html)
 - [Consulter l’API dans Swagger](http://127.0.0.1:5066/api/v1/swagger)
 
-Pour les séances suivantes, lance `check`, puis `serve` dans la même copie. Les comptes et contributions restent dans `instance/demo-persistante/`. Les fichiers de données et la clé de session sont exclus de Git.
+Les démarrages suivants utilisent `check`, puis `serve` dans le même dossier. Les comptes et contributions restent dans `instance/demo-persistante/`. Les fichiers de données et la clé de session sont exclus de Git.
 
-## Démonstration devant le jury
+## Parcours d’utilisation · Publier une théorie
 
-1. Depuis l’accueil, ouvre le dossier à la une et repère sa catégorie.
-2. Connecte-toi avec un compte membre de démonstration et ouvre **Analyse & Théories**.
-3. Sélectionne le dossier, saisis un titre et un texte, puis publie la théorie.
-4. Dans **Théories publiées**, sélectionne le même dossier et clique sur **Actualiser**. La contribution enregistrée s’affiche.
-5. Ouvre la même interface sur une largeur mobile pour montrer le réagencement de l’accueil et de la fiche.
+1. Ouvrir un dossier depuis l’accueil ou le catalogue.
+2. Se connecter avec un compte membre et accéder à **Analyse & Théories**.
+3. Sélectionner le dossier concerné, renseigner un titre et un texte, puis publier la théorie.
+4. Dans **Théories publiées**, sélectionner le même dossier et cliquer sur **Actualiser**. La contribution enregistrée apparaît dans la liste.
 
 ## Schémas
 
@@ -173,7 +172,7 @@ sequenceDiagram
 
 ## Vérifications
 
-Les recettes utilisent une base SQLite en mémoire et des données de démonstration. Node.js sert aux tests de l’interface.
+Les tests d’intégration utilisent une base SQLite en mémoire et un jeu de données d’essai. Node.js sert aux tests de l’interface.
 
 ```powershell
 .\.venv\Scripts\python.exe -I -B tools/recette_lot6g4.py --check-journey
@@ -182,12 +181,11 @@ Les recettes utilisent une base SQLite en mémoire et des données de démonstra
 node --test frontend/tests/*.test.cjs
 ```
 
-Les comptes de démonstration sont initialisés localement. Swagger documente les routes disponibles. L’inscription publique crée un compte membre.
+Swagger documente les routes disponibles. L’inscription publique crée un compte membre.
 
-## État de la version RNCP
+## Pistes d’amélioration
 
-| Catégorie | Points |
-| --- | --- |
-| Retiré du démarrage et du code de connexion | Base MySQL hébergée sur Aiven, dépendances MySQL et Alembic, commandes de migration. Le lanceur crée le schéma SQLite à l’initialisation. |
-| Changé | Palette bleu nuit et ambre doux, dossier à la une, lecture de la fiche sur ordinateur et mobile, accès direct aux commentaires, clés étrangères activées sur les connexions SQLite. |
-| À améliorer | Vérifier les parcours sur des téléphones réels, optimiser le poids des illustrations, automatiser les tests à chaque envoi sur GitHub et documenter un parcours complet de modération. |
+- Étendre les essais à des appareils mobiles physiques.
+- Optimiser le poids des illustrations.
+- Automatiser l’exécution des tests sur GitHub.
+- Documenter le parcours de modération.

@@ -99,6 +99,7 @@ function mountStoryComments(storyId) {
     likeControls = [];
   }
 
+  // Relire la liste hors écriture et recréer ses commandes à partir de la réponse du serveur.
   async function load() {
     if (busy || likeBusy || reading || departed || selectedId !== null) return;
     reading = true;
@@ -141,6 +142,7 @@ function mountStoryComments(storyId) {
     return value;
   }
 
+  // Utiliser la même vérification de session pour publier un commentaire ou signaler une contribution.
   async function submit(kind) {
     const reporting = kind === 'report';
     const feedback = reporting ? reportFeedback : commentFeedback;

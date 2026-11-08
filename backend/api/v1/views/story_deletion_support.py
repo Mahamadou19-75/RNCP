@@ -185,6 +185,7 @@ def strict_confirmation_json():
     return data
 
 
+# Calculer les dépendances et signer un aperçu lié à la session et à l’état du dossier.
 def deletion_preview(story_id):
     user = lock_actor()
     require_integrity()
@@ -200,6 +201,7 @@ def deletion_preview(story_id):
     return jsonify(result), 200
 
 
+# Vérifier le titre saisi et l’état courant avant d’émettre le jeton de suppression.
 def confirm_deletion(story_id):
     body = strict_confirmation_json()
     claims = load_token(body['preview_token'], 'preview')
@@ -217,6 +219,7 @@ def confirm_deletion(story_id):
                    expires_at=datetime.utcfromtimestamp(claims['expires']).isoformat() + 'Z'), 200
 
 
+# Vérifier à nouveau le dossier archivé et supprimer ses dépendances dans la même transaction.
 def delete_story(story_id):
     if request.get_data(cache=True):
         fail('Aucun corps attendu pour DELETE.', 400, 'INVALID_REQUEST')

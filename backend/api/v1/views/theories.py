@@ -12,7 +12,7 @@ from api.v1.views.story_visibility import get_active_story
 # Construire les champs JSON attendus par le lecteur, sans exposer l'objet ORM.
 # La date devient du texte ISO ou None ; aucune écriture SQL n'est effectuée ici.
 def theory_to_dict(theory):
-    """Convert a Theory object to a dictionary."""
+    """Convertir le modèle Theory en données sérialisables en JSON."""
     return {
         "id": theory.id,
         "story_id": theory.story_id,
@@ -34,7 +34,7 @@ def theory_to_dict(theory):
 # GET public : vérifier le dossier distingue une liste vide (200) d'un dossier
 # inexistant (404), puis le tri chronologique stabilise la lecture.
 def get_theories(story_id):
-    """Return theories for one story."""
+    """Lister les théories d’un dossier actif dans l’ordre de publication."""
     story = get_active_story(story_id)
 
     if not story:
@@ -62,7 +62,7 @@ def get_theories(story_id):
 # POST exige une session autorisée ; le filtre global a déjà vérifié son CSRF.
 # L'auteur vient du compte relu en base, jamais d'un user_id fourni dans le JSON.
 def post_theory(story_id):
-    """Create a theory for one story."""
+    """Valider puis enregistrer une théorie au nom du compte connecté."""
     user, error_response = get_authenticated_user()
 
     if error_response:
@@ -119,7 +119,7 @@ def post_theory(story_id):
 # L'incrément est fait par SQL afin de ne pas écraser un like concurrent.
 # Il n'y a pas ici de contrainte imposant un seul like par utilisateur.
 def like_theory(theory_id):
-    """Add one like to a theory."""
+    """Incrémenter le compteur de mentions J’aime d’une théorie."""
     user, error_response = get_authenticated_user()
 
     if error_response:

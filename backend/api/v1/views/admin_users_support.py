@@ -1,4 +1,4 @@
-"""Shared administrator representations and ban transaction; no schema change."""
+"""Partager le format des comptes et la transaction de bannissement entre les routes d’administration."""
 
 from flask import jsonify
 from sqlalchemy.exc import SQLAlchemyError

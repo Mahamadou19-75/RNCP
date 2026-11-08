@@ -1,4 +1,4 @@
-﻿"""Compatibility export of the application configured in backend/index.py."""
+﻿"""Exposer l’application configurée dans backend/index.py aux points d’entrée existants."""
 
 import os
 import sys

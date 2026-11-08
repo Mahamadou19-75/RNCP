@@ -96,6 +96,7 @@ function createAdminStoriesPanel({ reload } = {}) {
     });
   }
 
+  // Partir de l’aperçu signé d’un dossier archivé et vérifier l’état serveur si la réponse finale est incertaine.
   async function permanentlyDelete(story) {
     if (!ready || pending || !story.is_archived) return;
     pending = true;

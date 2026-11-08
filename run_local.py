@@ -1,4 +1,4 @@
-"""Serve the existing frontend and Flask API on one local origin."""
+"""Servir l’interface et l’API Flask depuis la même adresse locale."""
 
 import os
 import sys
@@ -15,7 +15,7 @@ IMAGE_SUFFIXES = {".svg", ".webp", ".png", ".jpg", ".jpeg", ".gif", ".avif"}
 # Ce middleware WSGI partage une origine pour les pages et l'API : les cookies
 # accompagnent ainsi les requêtes sans second serveur frontend.
 def create_local_app(api_app, frontend_root=FRONTEND_ROOT):
-    """Serve public frontend files; leave every API request to Flask."""
+    """Servir les fichiers publics et confier les requêtes API à Flask."""
     static_app = SharedDataMiddleware(
         api_app, {"/": str(frontend_root)}, cache=False
     )

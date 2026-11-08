@@ -173,6 +173,7 @@ async function loadStories() {
     const type = storyList.dataset.storyType;
     pageStories = type === 'all' ? stories.slice(featured ? 1 : 0, 3) :
       stories.filter(story => getStoryCategory(story)?.type === type);
+    // Mettre le premier dossier à la une. Les cartes suivantes sont affichées dans « À découvrir ».
     if (featured && stories.length) {
       featured.append(makeCard(stories[0], true));
       featured.hidden = false;
@@ -247,6 +248,7 @@ const historicalStoryHeadings = new Map([
 const detailTitle = document.getElementById('detail-titre');
 // Le slug de l'URL est transmis à l'API ; un 404 affiche un dossier introuvable.
 // Les paragraphes du récit sont créés comme texte dans le DOM.
+// Le slug de l’URL identifie le dossier. L’identifiant reçu sert ensuite aux commentaires et aux mentions J’aime.
 async function loadStory() {
   const feedback = document.getElementById('detail-feedback');
   detailTitle.parentElement.style.overflowWrap = 'anywhere';

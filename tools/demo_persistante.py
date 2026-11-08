@@ -444,6 +444,7 @@ def _discard(paths, work):
         shutil.rmtree(work)
 
 
+# Construire et vérifier la base dans un dossier de travail avant de la mettre en service.
 def initialize(paths, people):
     if paths.checked(paths.data).exists():
         raise LocalError('Données déjà présentes : initialisation refusée.')
@@ -480,6 +481,7 @@ def initialize(paths, people):
         _discard(paths, work)
 
 
+# Inspecter le schéma et les dossiers de démonstration en lecture seule.
 def check(paths):
     initialized(paths)
     with opened(paths.database) as connection:
@@ -493,6 +495,7 @@ def _copy_database(source, target):
         inspect_database(writer)
 
 
+# Utiliser la sauvegarde SQLite, puis associer la copie à son empreinte de contrôle.
 def backup(paths):
     initialized(paths)
     paths.checked(paths.backups.parent).mkdir(exist_ok=True)
@@ -512,6 +515,7 @@ def backup(paths):
         _discard(paths, work)
 
 
+# Vérifier la sauvegarde et conserver une copie de sécurité avant un remplacement autorisé.
 def restore(paths, snapshot, *, replace=False, renew_key=False):
     if not SNAPSHOT.fullmatch(snapshot):
         raise LocalError('Identifiant de sauvegarde invalide.')
@@ -549,6 +553,7 @@ def restore(paths, snapshot, *, replace=False, renew_key=False):
         _discard(paths, work)
 
 
+# Ouvrir la base persistante et servir le site sur la boucle locale.
 def serve(paths):
     initialized(paths)
     with application(paths) as (app, _, _):

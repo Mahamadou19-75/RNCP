@@ -31,7 +31,7 @@ if not app.config["SECRET_KEY"]:
 # Une variable d'environnement est une chaîne : interpréter explicitement
 # ses valeurs évite de considérer la chaîne "false" comme vraie.
 def env_to_bool(name, default=False):
-    """Read a boolean value from an environment variable."""
+    """Convertir une variable de configuration en booléen."""
     value = os.getenv(name)
 
     if value is None:
@@ -108,6 +108,7 @@ app.config["SESSION_COOKIE_SECURE"] = env_to_bool(
 # Initialize database
 db.init_app(app)
 
+# Appliquer les contraintes de référence à chaque ouverture de connexion SQLite.
 def enable_sqlite_foreign_keys(connection, _record):
     cursor = connection.cursor()
     try:
@@ -123,7 +124,7 @@ with app.app_context():
 # Le jeton aléatoire est lié à la session. Le frontend le reçoit par login/me
 # et le garde en mémoire pour ses en-têtes ; ne jamais le journaliser.
 def get_csrf_token():
-    """Return the current CSRF token, creating one if necessary."""
+    """Réutiliser le jeton CSRF de la session ou en créer un si nécessaire."""
     csrf_token = session.get("csrf_token")
 
     if not csrf_token:
@@ -138,7 +139,7 @@ def get_csrf_token():
 # GET/HEAD/OPTIONS passent ; login est exempté ; une requête anonyme passe aussi
 # ce filtre, mais doit encore satisfaire les permissions propres à la route.
 def protect_session_requests_from_csrf():
-    """Require a CSRF token for state-changing authenticated requests."""
+    """Vérifier le jeton CSRF avant les écritures réalisées avec une session."""
     protected_methods = {
         "POST",
         "PUT",
@@ -194,7 +195,7 @@ def not_found(error):
 # Garder le statut et les en-têtes HTTP du framework, tout en donnant au
 # frontend un corps JSON cohérent pour les erreurs des chemins API.
 def handle_api_http_error(error):
-    """Normalize framework API errors while preserving their HTTP headers."""
+    """Rendre les erreurs HTTP de Flask en JSON en conservant leurs en-têtes."""
     if request.path != "/api/v1" and not request.path.startswith("/api/v1/"):
         return error
 

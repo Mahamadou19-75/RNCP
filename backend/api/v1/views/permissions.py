@@ -8,7 +8,7 @@ from models import db, User
 # La signature du cookie permet de lire user_id, mais le compte est relu en
 # base à chaque contrôle : un compte supprimé ou banni perd ainsi son accès.
 def get_authenticated_user():
-    """Return the authenticated user or an API error response."""
+    """Renvoyer le compte actif de la session ou une erreur HTTP."""
     user_id = session.get("user_id")
 
     if user_id is None:
@@ -50,7 +50,7 @@ def get_authenticated_user():
 # Le décorateur applique le contrôle commun puis lit user.is_admin en base.
 # Un booléen envoyé par le navigateur ou l'affichage du menu ne donne aucun droit.
 def admin_required(view_function):
-    """Allow access only to authenticated administrators."""
+    """Protéger une route en vérifiant le rôle administrateur en base."""
     @wraps(view_function)
     def wrapped_view(*args, **kwargs):
         user, error_response = get_authenticated_user()

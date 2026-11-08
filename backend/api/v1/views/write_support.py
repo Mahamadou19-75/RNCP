@@ -1,4 +1,4 @@
-"""Input validation shared by the write routes; no schema changes."""
+"""Validations communes aux routes d’écriture de l’API."""
 
 import re
 

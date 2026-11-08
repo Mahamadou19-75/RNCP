@@ -12,7 +12,7 @@ from api.v1.views.admin_users_support import admin_user_to_dict
 # Cette règle de saisie impose longueur et composition avant le hachage ;
 # elle ne remplace pas le hachage salé ni une protection contre la force brute.
 def is_valid_password(password):
-    """Check password security requirements."""
+    """Vérifier la longueur et les caractères exigés pour un mot de passe."""
     if not (8 <= len(password) <= 50):
         return False
 
@@ -35,7 +35,7 @@ def is_valid_password(password):
 @admin_required
 # GET réservé aux administrateurs : la liste contient notamment les emails.
 def get_users():
-    """Return all users."""
+    """Lister les comptes depuis une route réservée à l’administration."""
     try:
         users = User.query.order_by(User.id.asc()).all()
         return jsonify([admin_user_to_dict(user) for user in users]), 200
@@ -48,7 +48,7 @@ def get_users():
 # POST crée un compte classique ; ignorer un rôle client empêche une inscription
 # administrateur. Une session déjà présente est vérifiée, sinon la route est publique.
 def register_user():
-    """Create a new user; passwords are preserved exactly as supplied."""
+    """Créer un compte membre en conservant les caractères exacts du mot de passe avant hachage."""
     if session.get("user_id") is not None:
         user, error_response = get_authenticated_user()
         if error_response:

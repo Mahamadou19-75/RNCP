@@ -16,7 +16,7 @@ db = SQLAlchemy()
 # Un compte peut porter plusieurs contributions. Pseudo et email sont uniques
 # indépendamment ; is_admin et is_banned sont décidés côté serveur.
 class User(db.Model):
-    """User and administrator account."""
+    """Compte membre ou administrateur, selon le rôle enregistré."""
 
     __tablename__ = "users"
 
@@ -41,12 +41,12 @@ class User(db.Model):
     # Werkzeug génère un hachage salé adapté aux mots de passe. On conserve
     # ce hachage pour vérifier une saisie ultérieure, jamais le mot de passe brut.
     def set_password(self, password):
-        """Hash the password before storing it."""
+        """Calculer le hachage du mot de passe avant son enregistrement."""
         self.password_hash = generate_password_hash(password)
 
     # Comparer par la fonction Werkzeug, sans tenter de déchiffrer le hachage.
     def check_password(self, password):
-        """Check a password against its hash."""
+        """Comparer la saisie au hachage enregistré."""
         return check_password_hash(self.password_hash, password)
 
     # La représentation publique du compte exclut expressément password_hash.
@@ -66,7 +66,7 @@ class User(db.Model):
 # Une catégorie regroupe des dossiers ; son nom est unique, son id est la
 # référence conservée dans stories.category_id.
 class Category(db.Model):
-    """Story category."""
+    """Catégorie utilisée pour classer les dossiers."""
 
     __tablename__ = "categories"
 
@@ -81,7 +81,7 @@ class Category(db.Model):
 # Le slug unique sert aux liens lisibles ; les images restent des références de
 # fichiers/URL, pas des fichiers binaires stockés dans cette table.
 class Story(db.Model):
-    """Criminal story."""
+    """Dossier d’enquête, consultable publiquement tant qu’il est actif."""
 
     __tablename__ = "stories"
 
@@ -213,7 +213,7 @@ class Story(db.Model):
 # Chaque théorie dépend d'un dossier (CASCADE). Son auteur peut devenir NULL
 # selon la contrainte SQL SET NULL, sans effacer le texte de la contribution.
 class Theory(db.Model):
-    """Theory submitted for a story."""
+    """Théorie publiée au sujet d’un dossier."""
 
     __tablename__ = "theories"
 
@@ -279,7 +279,7 @@ class Theory(db.Model):
 # Le pseudo copié dans username demeure même si user_id devient NULL : ce
 # comportement ne constitue pas à lui seul une anonymisation des données.
 class Comment(db.Model):
-    """Comment posted on a story."""
+    """Commentaire rattaché à un dossier."""
 
     __tablename__ = "comments"
 
@@ -374,7 +374,7 @@ class Comment(db.Model):
 # Les deux références sont obligatoires et portent CASCADE. La contrainte
 # composite ci-dessous interdit deux votes du même compte pour un même dossier.
 class Vote(db.Model):
-    """Vote submitted by a user for a story."""
+    """Mention J’aime unique pour un couple compte et dossier."""
 
     __tablename__ = "votes"
 
@@ -452,7 +452,7 @@ class CommentLike(db.Model):
 # Une proposition reste distincte des dossiers publiés et commence en pending.
 # Son auteur est obligatoire ; aucune conversion automatique en Story n'existe.
 class Proposal(db.Model):
-    """Story proposal submitted by a user."""
+    """Proposition d’histoire envoyée par un membre."""
 
     __tablename__ = "proposals"
 
@@ -509,7 +509,7 @@ class Proposal(db.Model):
 # Un signalement ne vise que Comment. type/target_id restent des propriétés
 # compatibles en Python/JSON, jamais une seconde référence stockée en parallèle.
 class Report(db.Model):
-    """Report submitted for moderation."""
+    """Signalement d’un commentaire à consulter en administration."""
 
     __tablename__ = "reports"
 
@@ -583,7 +583,7 @@ class Report(db.Model):
 # Une mise à jour référence un dossier et suit sa suppression par CASCADE.
 # La clé étrangère ne garantit pas que sa catégorie soit réellement Cold Case.
 class ColdCaseUpdate(db.Model):
-    """Update attached to a cold case story."""
+    """Mise à jour rattachée à un dossier."""
 
     __tablename__ = "cold_case_updates"
 

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Administration — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="admin-connexion.html">Connexion administrateur</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main id="admin-dashboard" aria-busy="true">
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="page-title">
+				<p class="eyebrow">ADMINISTRATION</p>
+				<h1>Tableau de bord</h1>
+				<p>Consultez les statistiques, propositions et signalements du site.</p>
+				<button id="admin-refresh" class="btn" type="button" disabled>Actualiser</button>
+				<p id="admin-feedback" class="feedback" role="status" aria-live="polite">Vérification de votre accès...</p>
+				<a id="admin-login-link" href="admin-connexion.html" hidden>Connexion administrateur</a>
+			</section>
+			<section id="admin-data" class="section" hidden>
+				<h2>Vue d’ensemble</h2>
+				<div class="cards">
+					<div class="panel">
+						<h3 id="admin-stories-count">—</h3>
+						<p>Dossiers actifs</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-resolved-count">—</h3>
+						<p>Histoires résolues</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-coldcases-count">—</h3>
+						<p>Cold Cases</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-users-count">—</h3>
+						<p>Utilisateurs</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-comments-count">—</h3>
+						<p>Commentaires</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-reports-count">—</h3>
+						<p>Signalements</p>
+					</div>
+					<div class="panel">
+						<h3 id="admin-pending-proposals-count">—</h3>
+						<p>Propositions en attente</p>
+					</div>
+				</div>
+				<p id="admin-categories-feedback" class="feedback"></p>
+				<section id="admin-stories" class="panel" aria-busy="false" aria-labelledby="admin-stories-title">
+					<h2 id="admin-stories-title">Dossiers : histoires et Cold Cases</h2>
+					<p>L’archivage masque un dossier du site public et conserve ses contributions pour une restauration éventuelle.</p>
+					<p id="admin-archives-count" role="status" aria-live="polite">Archives : —</p>
+					<div class="cards">
+						<div>
+							<label for="admin-stories-state">Filtrer par état</label>
+							<select id="admin-stories-state" aria-controls="admin-stories-list" disabled>
+								<option value="active">Dossiers actifs</option>
+								<option value="archived">Archives</option>
+								<option value="all">Actifs et archives</option>
+							</select>
+						</div>
+						<div>
+							<label for="admin-stories-search">Rechercher un dossier par titre</label>
+							<input id="admin-stories-search" type="search" autocomplete="off" aria-controls="admin-stories-list" disabled>
+						</div>
+						<div>
+							<label for="admin-stories-filter">Filtrer par catégorie</label>
+							<select id="admin-stories-filter" aria-controls="admin-stories-list" disabled>
+								<option value="all">Tous les dossiers</option>
+								<option value="resolved">Histoires résolues</option>
+								<option value="coldcase">Cold Cases</option>
+								<option id="admin-stories-other" value="other" hidden disabled>Autres catégories</option>
+							</select>
+						</div>
+					</div>
+					<p id="admin-stories-feedback" class="feedback" role="status" aria-live="polite"></p>
+					<div id="admin-stories-list" class="cards"></div>
+				</section>
+				<section id="admin-users" class="panel" aria-busy="false" aria-labelledby="admin-users-title">
+					<h2 id="admin-users-title">Gestion des utilisateurs</h2>
+					<p>Le bannissement bloque les prochains accès authentifiés. Le compte et ses contributions sont conservés. Les administrateurs sont protégés.</p>
+					<button id="admin-users-refresh" class="btn" type="button" disabled>Actualiser les utilisateurs</button>
+					<p id="admin-users-feedback" class="feedback" role="status" aria-live="polite"></p>
+					<div id="admin-users-list"></div>
+				</section>
+				<h2>Propositions reçues</h2>
+				<p id="admin-proposals-feedback" class="feedback"></p>
+				<div id="admin-proposals-list"></div>
+				<h2>Signalements reçus</h2>
+				<p id="admin-reports-feedback" class="feedback"></p>
+				<div id="admin-reports-list"></div>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant — HOLBERTON SCHOOL
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+		<script src="admin-users.js"></script>
+		<script src="admin-stories.js"></script>
+		<script src="admin-dashboard.js"></script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Analyse &amp; Théories — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html" aria-current="page">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="page-title">
+				<p class="eyebrow">COMMUNAUTÉ</p>
+				<h1>Analyse & Théories</h1>
+				<p>Choisissez un dossier et partagez votre théorie avec la communauté.</p>
+			</section>
+			<section class="section">
+				<div class="panel">
+					<h2>Partager une analyse</h2>
+					<form id="theory-form" class="demo-form" method="post" aria-busy="true" aria-describedby="theory-data-notice">
+						<p id="theory-data-notice" class="data-notice"><strong>Publication de votre théorie.</strong> Votre titre et votre analyse seront consultables sans connexion sur le dossier actif. Évitez les coordonnées privées et les informations personnelles inutiles concernant vous-même ou des tiers. L’information complète sur les traitements reste en préparation.</p>
+						<label for="sujet">Dossier</label>
+						<select id="sujet" name="story_id" required disabled>
+							<option value="">Choisir un dossier</option>
+						</select>
+						<label for="theory-title">Titre de votre théorie</label>
+						<input id="theory-title" name="title" maxlength="200" required placeholder="Titre de votre théorie">
+						<label for="avis">Votre avis</label>
+						<textarea id="avis" name="content" rows="5" required placeholder="Votre analyse..."></textarea>
+						<button class="btn" type="submit" disabled aria-describedby="theory-data-notice">Envoyer</button>
+						<p class="feedback" aria-live="polite">Chargement des dossiers...</p>
+					</form>
+				</div>
+			</section>
+			<section id="published-theories" class="section" aria-labelledby="published-theories-title" aria-busy="true">
+				<h2 id="published-theories-title">Théories publiées</h2>
+				<div class="panel">
+					<label for="theories-story-select">Dossier à consulter</label>
+					<select id="theories-story-select" disabled>
+						<option value="">Choisir un dossier</option>
+					</select>
+					<button id="theories-refresh" class="btn" type="button" disabled>Actualiser</button>
+					<p id="theories-list-feedback" class="feedback" role="status" aria-live="polite">Chargement des dossiers...</p>
+				</div>
+				<div id="published-theories-list"></div>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+		<script src="theories-list.js"></script>
+	</body>
+</html>

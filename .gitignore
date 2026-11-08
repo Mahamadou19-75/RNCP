@@ -1,0 +1,61 @@
+# Ignore python virtual environment
+backend/venv/
+
+# Ignore SQLite local database
+backend/instance/
+backend/*.db
+
+# Ignore Python cache files
+**/__pycache__/
+*.pyc
+.env
+instance/
+certs/
+portfolio_db_backup.sql
+
+# Environnements et fichiers de session locaux
+.env.*
+!.env.example
+!.env.sample
+cookies.txt
+cookies-*.txt
+/.venv/
+
+# Cles privees et conteneurs locaux
+*.key
+*.p12
+*.pfx
+
+# Bases locales et journaux SQLite
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Sauvegardes : conserver les migrations SQL visibles
+/backups/
+/sauvegardes/
+*_backup.sql
+*_backup.sql.gz
+backup_*.sql
+backup_*.sql.gz
+*.sql.bak
+*.bak
+
+# Telechargement identifie pendant l'audit
+/frontend/images/Reprendre projet portfolio_files/
+
+# Metadonnees locales : apres accord de retrait du suivi
+.DS_Store
+/.vscode/settings.json
+
+# Ancienne application : seulement si retrait du suivi autorise
+/backend/ancien_app.py

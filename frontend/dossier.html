@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Dossier — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="section detail-page">
+				<div class="detail-nav">
+					<a href="index.html" id="retour-dossier">← Retour aux dossiers</a>
+					<a class="detail-comments-link" href="#story-comments">Commentaires ↓</a>
+				</div>
+				<article class="detail">
+					<p id="detail-categorie" class="eyebrow"></p>
+					<h1 id="detail-titre"></h1>
+					<p id="detail-resume"></p>
+					<div id="detail-image" class="detail-media" hidden></div>
+					<div id="detail-contenu"></div>
+					<p id="story-like-data-notice" class="data-notice">Votre J’aime de dossier est associé à votre compte pour permettre son ajout ou son retrait. Le total est visible aux lecteurs. L’information complète sur les traitements reste en préparation.</p>
+					<div id="story-like" aria-label="J’aime du dossier" aria-describedby="story-like-data-notice"></div>
+					<p id="detail-feedback" class="feedback" aria-live="polite"></p>
+				</article>
+				<section id="story-comments" class="story-comments" aria-labelledby="comments-title" hidden>
+					<h2 id="comments-title">Commentaires</h2>
+					<button id="comments-refresh" class="btn" type="button" disabled>Actualiser les commentaires</button>
+					<p id="comments-feedback" class="feedback" role="status"></p>
+					<p id="comment-like-data-notice" class="data-notice">Vos J’aime de commentaires sont associés à votre compte pour permettre leur ajout ou leur retrait. Les totaux sont visibles aux lecteurs. L’information complète sur les traitements reste en préparation.</p>
+					<div id="comments-list" aria-describedby="comment-like-data-notice"></div>
+					<form id="comment-form" aria-describedby="comment-data-notice comment-feedback">
+						<h3>Ajouter un commentaire</h3>
+						<p id="comment-data-notice" class="data-notice">Votre commentaire et votre pseudonyme seront consultables sans connexion sur le dossier actif. Évitez les coordonnées privées et les informations personnelles inutiles concernant vous-même ou des tiers. Un compte connecté et actif est nécessaire pour envoyer. L’information complète sur les traitements reste en préparation.</p>
+						<label for="comment-text">Votre commentaire</label>
+						<textarea id="comment-text" name="text" rows="5" required aria-describedby="comment-data-notice contribution-limit" disabled></textarea>
+						<p id="contribution-limit">65 535 octets UTF-8 maximum, hors espaces en début et fin. Les accents peuvent occuper plusieurs octets.</p>
+						<button id="comment-send" class="btn" type="submit" aria-describedby="comment-data-notice" disabled>Publier le commentaire</button>
+						<p id="comment-feedback" class="feedback" role="status"></p>
+					</form>
+					<form id="report-form" aria-labelledby="report-title" aria-describedby="report-data-notice report-feedback" hidden>
+						<h3 id="report-title">Signaler un commentaire</h3>
+						<p id="report-target"></p>
+						<p id="report-data-notice" class="data-notice">Le commentaire visé et votre motif sont transmis à l’administration pour examen. Évitez les informations privées inutiles. L’envoi nécessite un compte connecté et actif et ne masque pas automatiquement le commentaire. L’information complète sur les traitements reste en préparation.</p>
+						<label for="report-reason">Motif du signalement</label>
+						<textarea id="report-reason" name="reason" rows="4" required aria-describedby="report-data-notice contribution-limit" disabled></textarea>
+						<button id="report-send" class="btn" type="submit" aria-describedby="report-data-notice" disabled>Confirmer le signalement</button>
+						<button id="report-cancel" class="outline" type="button">Annuler</button>
+					</form>
+					<p id="report-feedback" class="feedback" role="status"></p>
+					<p><a href="connexion.html">Se connecter</a> pour contribuer ou signaler un commentaire.</p>
+				</section>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="likes.js"></script>
+		<script src="comments.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

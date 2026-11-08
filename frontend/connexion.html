@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Connexion — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="section narrow">
+				<div class="panel">
+					<p class="eyebrow">ESPACE MEMBRE</p>
+					<h1>Connexion</h1>
+					<p>Connectez-vous avec votre nom d’utilisateur.</p>
+					<form id="login-form" class="demo-form" method="post" aria-describedby="login-data-notice">
+						<p id="login-data-notice" class="data-notice"><strong>Vos données de connexion.</strong> Votre pseudonyme et votre mot de passe servent à vérifier votre accès. Un cookie de session permet ensuite de reconnaître votre connexion et de protéger vos actions. L’information complète sur les traitements reste en préparation.</p>
+						<label for="username">Nom d’utilisateur</label>
+						<input id="username" name="username" type="text" autocomplete="username" required>
+						<label for="password">Mot de passe</label>
+						<input id="password" name="password" type="password" autocomplete="current-password" required>
+						<button class="btn" type="submit" aria-describedby="login-data-notice">Se connecter</button>
+						<p class="feedback" aria-live="polite"></p>
+					</form>
+					<p><a href="inscription.html">Créer un compte</a> · <a href="admin-connexion.html">Connexion administrateur</a></p>
+				</div>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

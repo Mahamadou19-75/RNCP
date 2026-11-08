@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Accueil — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html" aria-current="page">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" aria-live="polite"></p>
+			<section class="hero">
+				<div class="hero-intro">
+					<p class="eyebrow">CHRONIQUES D’ENQUÊTE</p>
+					<h1>Les dossiers qui ont marqué les enquêtes</h1>
+					<p>Explorez les affaires résolues et les Cold Cases, puis partagez vos analyses.</p>
+					<div class="actions">
+						<a class="btn" href="histoires.html">Découvrir les histoires →</a>
+						<a class="outline" href="coldcases.html">Explorer les Cold Cases</a>
+					</div>
+				</div>
+				<section class="hero-feature" hidden aria-labelledby="feature-title">
+					<h2 id="feature-title" class="eyebrow">À LA UNE</h2>
+				</section>
+			</section>
+			<section class="section">
+				<div class="section-head">
+					<h2>À découvrir</h2>
+					<a href="histoires.html">Voir tous les dossiers →</a>
+				</div>
+				<p id="stories-feedback" class="feedback" aria-live="polite"></p>
+				<div id="accueil-cartes" class="cards" data-story-type="all"></div>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

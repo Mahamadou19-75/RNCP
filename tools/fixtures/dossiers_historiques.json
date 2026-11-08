@@ -1,0 +1,584 @@
+{
+  "schema_version": 1,
+  "editorial_choices": {
+    "cc1": "B",
+    "cc2": "B"
+  },
+  "notes": "Textes historiques conserves sans correction. Slugs Cold Cases et id SQL sont des choix techniques nouveaux. Les annexes sont conservees sans nouvelle interface de galerie.",
+  "stories": [
+    {
+      "legacy_id": "h1",
+      "id": 101,
+      "slug": "golden-state-killer",
+      "title": "Chapitre I : L'Ombre du Golden State Killer (1976 - 2018)",
+      "summary": "L'analyse complète de la traque de Joseph James DeAngelo : de ses traumatismes d'enfance à sa chute finale par la généalogie génétique.",
+      "category_id": 1,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 L'ENFANCE ET LA JEUNESSE DE JOSEPH DEANGELO</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Né en 1945 dans l'État de New York, Joseph James DeAngelo Jr. grandit dans une famille marquée par l'instabilité et la violence. Son père, un militaire sévère et violent, abuse régulièrement de son autorité. À l'adolescence, suite au divorce de ses parents, il s'installe en Californie avec sa maman. Sa scolarité à la Folsom High School se déroule sans éclat majeur ; il y est décrit comme un garçon solitaire, renfermé, accumulant une rancœur silencieuse. En 1964, il s'engage dans la Navy et sert durant la guerre du Vietnam à bord du destroyer USS Canberra, un milieu où il perfectionne son sang-froid et sa maîtrise des situations de stress intense. À son retour, il s'inscrit en criminologie à l'université d'État de Sacramento et obtient son diplôme, avant de décrocher un poste d'officier de police à Exeter en 1973.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 AVANT LE DRAME : LA DOUBLE VIE ET LES REpÉRAGES</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">DeAngelo se marie en 1973 avec Sharon Huddle, une avocate. Ses proches le décrivent alors comme un voisin exigeant, sujet à de violents accès de colère pour des futilités, mais personne ne soupçonne son obsession nocturne. Utilisant son badge de policier comme couverture idéale, il arpente les nouveaux lotissements de Sacramento. Il s'introduit en secret dans les maisons pendant la journée, déverrouille des loquets de fenêtres, cache des cordes ou des armes sous les lits, et étudie les habitudes quotidiennes des résidents grâce aux lignes téléphoniques qu'il coupe parfois au préalable.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LE DÉROULEMENT DU RITUEL ET LES MEURTRES</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Son mode opératoire frise la folie clinique. Cagoulé, une lampe torche aveuglante à la main, il réveille ses victimes en murmurant des menaces de mort. Pour neutraliser les couples, il ligote l'homme avec une méthode de nœud unique apprise dans la Navy. Il pose ensuite des assiettes en équilibre sur le dos de l'homme, le menaçant de tuer tout le monde s'il entend le moindre bruit de vaisselle brisée pendant qu'il agresse sa compagne dans la pièce voisine. En migrant vers le sud de la Californie à la fin des années 70, il franchit un cap : il supprime systématiquement tous les témoins. Ses victimes sont abattues par arme à feu ou sauvagement battues à mort à l'aide d'outils trouvés sur place.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🎙️ INTERROGATOIRE ET CHUTE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Pendant des décennies, le dossier piétine. C'est en 2018 que l'inspecteur Paul Holes utilise pour la première fois la généalogie génétique en comparant l'ADN inconnu des scènes de crime avec les profils d'utilisateurs sur le site public GEDmatch. La découverte d'un cousin éloigné permet de reconstituer l'arbre généalogique jusqu'à Joseph DeAngelo. Arrêté à son domicile de Citrus Heights alors qu'il s'apprêtait à faire cuire un rôti, il est placé en salle d'interrogatoire. Face aux preuves ADN irréfutables prélevées discrètement sur sa voiture, il feint la confusion mentale, murmurant qu'une force interne nommée 'Jerry' l'a poussé à agir durant sa jeunesse. Les enquêteurs ne croient pas à cette défense de dissociation psychologique.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">⚖️ LE PROCÈS ET LE VERDICT HISTORIQUE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">En août 2020, pour s'éviter une condamnation à la peine de mort, DeAngelo plaide coupable de 13 meurtres et admet des dizaines d'agressions prescrites. Le procès offre une tribune bouleversante aux survivants et aux familles des victimes qui défilent à la barre pour exprimer leur douleur face à ce vieillard affalé dans un fauteuil roulant. Il est condamné à <strong>11 peines consécutives de prison à perpétuité, sans aucune possibilité de libération conditionnelle</strong>.</p>\n                ",
+      "content_html_sha256": "f7b6d26afbc83607969321edc142ca6f33b72bd0200a675d6e8d623656ab8cab",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 L'ENFANCE ET LA JEUNESSE DE JOSEPH DEANGELO"
+        },
+        {
+          "tag": "p",
+          "text": "Né en 1945 dans l'État de New York, Joseph James DeAngelo Jr. grandit dans une famille marquée par l'instabilité et la violence. Son père, un militaire sévère et violent, abuse régulièrement de son autorité. À l'adolescence, suite au divorce de ses parents, il s'installe en Californie avec sa maman. Sa scolarité à la Folsom High School se déroule sans éclat majeur ; il y est décrit comme un garçon solitaire, renfermé, accumulant une rancœur silencieuse. En 1964, il s'engage dans la Navy et sert durant la guerre du Vietnam à bord du destroyer USS Canberra, un milieu où il perfectionne son sang-froid et sa maîtrise des situations de stress intense. À son retour, il s'inscrit en criminologie à l'université d'État de Sacramento et obtient son diplôme, avant de décrocher un poste d'officier de police à Exeter en 1973."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 AVANT LE DRAME : LA DOUBLE VIE ET LES REpÉRAGES"
+        },
+        {
+          "tag": "p",
+          "text": "DeAngelo se marie en 1973 avec Sharon Huddle, une avocate. Ses proches le décrivent alors comme un voisin exigeant, sujet à de violents accès de colère pour des futilités, mais personne ne soupçonne son obsession nocturne. Utilisant son badge de policier comme couverture idéale, il arpente les nouveaux lotissements de Sacramento. Il s'introduit en secret dans les maisons pendant la journée, déverrouille des loquets de fenêtres, cache des cordes ou des armes sous les lits, et étudie les habitudes quotidiennes des résidents grâce aux lignes téléphoniques qu'il coupe parfois au préalable."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LE DÉROULEMENT DU RITUEL ET LES MEURTRES"
+        },
+        {
+          "tag": "p",
+          "text": "Son mode opératoire frise la folie clinique. Cagoulé, une lampe torche aveuglante à la main, il réveille ses victimes en murmurant des menaces de mort. Pour neutraliser les couples, il ligote l'homme avec une méthode de nœud unique apprise dans la Navy. Il pose ensuite des assiettes en équilibre sur le dos de l'homme, le menaçant de tuer tout le monde s'il entend le moindre bruit de vaisselle brisée pendant qu'il agresse sa compagne dans la pièce voisine. En migrant vers le sud de la Californie à la fin des années 70, il franchit un cap : il supprime systématiquement tous les témoins. Ses victimes sont abattues par arme à feu ou sauvagement battues à mort à l'aide d'outils trouvés sur place."
+        },
+        {
+          "tag": "h4",
+          "text": "🎙️ INTERROGATOIRE ET CHUTE"
+        },
+        {
+          "tag": "p",
+          "text": "Pendant des décennies, le dossier piétine. C'est en 2018 que l'inspecteur Paul Holes utilise pour la première fois la généalogie génétique en comparant l'ADN inconnu des scènes de crime avec les profils d'utilisateurs sur le site public GEDmatch. La découverte d'un cousin éloigné permet de reconstituer l'arbre généalogique jusqu'à Joseph DeAngelo. Arrêté à son domicile de Citrus Heights alors qu'il s'apprêtait à faire cuire un rôti, il est placé en salle d'interrogatoire. Face aux preuves ADN irréfutables prélevées discrètement sur sa voiture, il feint la confusion mentale, murmurant qu'une force interne nommée 'Jerry' l'a poussé à agir durant sa jeunesse. Les enquêteurs ne croient pas à cette défense de dissociation psychologique."
+        },
+        {
+          "tag": "h4",
+          "text": "⚖️ LE PROCÈS ET LE VERDICT HISTORIQUE"
+        },
+        {
+          "tag": "p",
+          "text": "En août 2020, pour s'éviter une condamnation à la peine de mort, DeAngelo plaide coupable de 13 meurtres et admet des dizaines d'agressions prescrites. Le procès offre une tribune bouleversante aux survivants et aux familles des victimes qui défilent à la barre pour exprimer leur douleur face à ce vieillard affalé dans un fauteuil roulant. Il est condamné à 11 peines consécutives de prison à perpétuité, sans aucune possibilité de libération conditionnelle."
+        }
+      ],
+      "content": "👥 L'ENFANCE ET LA JEUNESSE DE JOSEPH DEANGELO\n\nNé en 1945 dans l'État de New York, Joseph James DeAngelo Jr. grandit dans une famille marquée par l'instabilité et la violence. Son père, un militaire sévère et violent, abuse régulièrement de son autorité. À l'adolescence, suite au divorce de ses parents, il s'installe en Californie avec sa maman. Sa scolarité à la Folsom High School se déroule sans éclat majeur ; il y est décrit comme un garçon solitaire, renfermé, accumulant une rancœur silencieuse. En 1964, il s'engage dans la Navy et sert durant la guerre du Vietnam à bord du destroyer USS Canberra, un milieu où il perfectionne son sang-froid et sa maîtrise des situations de stress intense. À son retour, il s'inscrit en criminologie à l'université d'État de Sacramento et obtient son diplôme, avant de décrocher un poste d'officier de police à Exeter en 1973.\n\n🕒 AVANT LE DRAME : LA DOUBLE VIE ET LES REpÉRAGES\n\nDeAngelo se marie en 1973 avec Sharon Huddle, une avocate. Ses proches le décrivent alors comme un voisin exigeant, sujet à de violents accès de colère pour des futilités, mais personne ne soupçonne son obsession nocturne. Utilisant son badge de policier comme couverture idéale, il arpente les nouveaux lotissements de Sacramento. Il s'introduit en secret dans les maisons pendant la journée, déverrouille des loquets de fenêtres, cache des cordes ou des armes sous les lits, et étudie les habitudes quotidiennes des résidents grâce aux lignes téléphoniques qu'il coupe parfois au préalable.\n\n💀 LE DÉROULEMENT DU RITUEL ET LES MEURTRES\n\nSon mode opératoire frise la folie clinique. Cagoulé, une lampe torche aveuglante à la main, il réveille ses victimes en murmurant des menaces de mort. Pour neutraliser les couples, il ligote l'homme avec une méthode de nœud unique apprise dans la Navy. Il pose ensuite des assiettes en équilibre sur le dos de l'homme, le menaçant de tuer tout le monde s'il entend le moindre bruit de vaisselle brisée pendant qu'il agresse sa compagne dans la pièce voisine. En migrant vers le sud de la Californie à la fin des années 70, il franchit un cap : il supprime systématiquement tous les témoins. Ses victimes sont abattues par arme à feu ou sauvagement battues à mort à l'aide d'outils trouvés sur place.\n\n🎙️ INTERROGATOIRE ET CHUTE\n\nPendant des décennies, le dossier piétine. C'est en 2018 que l'inspecteur Paul Holes utilise pour la première fois la généalogie génétique en comparant l'ADN inconnu des scènes de crime avec les profils d'utilisateurs sur le site public GEDmatch. La découverte d'un cousin éloigné permet de reconstituer l'arbre généalogique jusqu'à Joseph DeAngelo. Arrêté à son domicile de Citrus Heights alors qu'il s'apprêtait à faire cuire un rôti, il est placé en salle d'interrogatoire. Face aux preuves ADN irréfutables prélevées discrètement sur sa voiture, il feint la confusion mentale, murmurant qu'une force interne nommée 'Jerry' l'a poussé à agir durant sa jeunesse. Les enquêteurs ne croient pas à cette défense de dissociation psychologique.\n\n⚖️ LE PROCÈS ET LE VERDICT HISTORIQUE\n\nEn août 2020, pour s'éviter une condamnation à la peine de mort, DeAngelo plaide coupable de 13 meurtres et admet des dizaines d'agressions prescrites. Le procès offre une tribune bouleversante aux survivants et aux familles des victimes qui défilent à la barre pour exprimer leur douleur face à ce vieillard affalé dans un fauteuil roulant. Il est condamné à 11 peines consécutives de prison à perpétuité, sans aucune possibilité de libération conditionnelle.",
+      "provenance": {
+        "commit": "5f488f8eb6f2f753655123ae393f13eedf92a87d",
+        "path": "frontend/histoires.html",
+        "blob": "ed5fbe7f6c2bbd8c1bafed49b36ac7f329088bd4",
+        "record_line": 50
+      },
+      "original_image": "images/deangelo_main.jpg",
+      "gallery": [
+        {
+          "url": "images/deangelo_mugshot.jpg",
+          "label": "Cliché officiel d'identité judiciaire de DeAngelo"
+        },
+        {
+          "url": "images/deangelo_composite.jpg",
+          "label": "Portrait-robot officiel de recherche du FBI"
+        },
+        {
+          "url": "images/deangelo_wanted.jpg",
+          "label": "Affiche de recherche officielle publiée en Californie"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Gay Hardwick (Survivante de l'attaque de 1978)",
+          "text": "« Il nous a répété pendant des heures que si les assiettes sur le dos de mon mari bougeaient, il nous couperait la gorge. Cette vaisselle est restée gravée dans mes cauchemars pendant quarante ans. »"
+        },
+        {
+          "role": "Sharon Huddle (Ex-épouse, lors des auditions préliminaires)",
+          "text": "« J'ai vécu avec un homme qui semblait juste maniaque et colérique. Découvrir que le monstre recherché par tout le pays dormait à mes côtés a détruit ma perception de la réalité. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Squeezie — Ce tueur a nargué la police pendant 40 ans (Golden State Killer)",
+          "url": "https://www.youtube.com/watch?v=yYfG79q7t_0"
+        },
+        {
+          "label": "Mcskyz — L'Affaire du Golden State Killer (Le policier sadique)",
+          "url": "https://www.youtube.com/watch?v=hO3XpM882N0"
+        },
+        {
+          "label": "Rapport d'enquête officiel et dépositions - Archives du FBI",
+          "url": "https://www.fbi.gov/history/famous-cases/golden-state-killer"
+        }
+      ]
+    },
+    {
+      "legacy_id": "h2",
+      "id": 102,
+      "slug": "chris-watts",
+      "title": "Chapitre II : Le Masque de Chris Watts (L'Infanticide du Colorado)",
+      "summary": "L'analyse chirurgicale du triple meurtre commis par Chris Watts sur sa femme Shanann et ses enfants Bella et Celeste en août 2018.",
+      "category_id": 1,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 RENCONTRE ET APPARENCE DE BONHEUR</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Chris Watts rencontre Shanann Rzucek en 2010 sur Facebook alors qu'elle traverse une phase difficile, luttant contre un lupus agressif. Shanann, une femme dynamique originaire de Caroline du Nord, trouve en Chris un homme calme, attentionné, presque timide, qui l'aide à surmonter sa maladie. Ils se marient en 2012 et déménagent dans une immense maison à Frederick, dans le Colorado. Shanann travaille dans la vente directe et documente chaque instant de leur vie de famille parfaite sur les réseaux sociaux. Derrière les sourires virtuels se cache pourtant une crise financière aiguë : le couple accumule des dettes massives et frôle la faillite.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 LA GLISSADE : LA RENCONTRE DE NICHOL KESSINGER</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Au cours de l'été 2018, alors que Shanann est partie en vacances pendant six semaines chez ses parents avec leurs filles Bella (4 ans) et Celeste (3 ans), Chris reste seul pour travailler chez Anadarko Petroleum. Il y entame une liaison passionnée avec Nichol Kessinger, une collègue géologue. Nichol le croit en instance de divorce. Pour la première fois de sa vie, Chris expérimente une liberté totale et commence à voir sa propre famille comme un fardeau financier et émotionnel insupportable dont il doit se libérer pour réinventer sa vie.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LE DÉROULEMENT DU DRAME DU 13 AOÛT 2018</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Shanann rentre d'un voyage d'affaires à 2h00 du matin. Une explication houleuse éclate dans leur chambre conjugale. Chris refuse d'assumer la confrontation et étrangle Shanann à mains nues alors qu'elle est enceinte de 15 semaines. Le drame prend une tournure encore plus horrible lorsque Bella et Celeste se réveillent. Chris charge le corps inanimé de Shanann à l'arrière de son pick-up professionnel et force les deux fillettes, terrorisées, à monter à bord. Il conduit pendant 45 minutes vers un site pétrolier isolé de son entreprise. Sur place, il étouffe Celeste sous les yeux de sa sœur aînée avant de jeter son corps dans une cuve de pétrole brut. Il s'en prend ensuite à Bella qui le supplie d'épargner sa vie, avant de l'enterrer sommairement à proximité.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🎙️ UN INTERROGATOIRE SOUS HAUTE TENSION PSYCHOLOGIQUE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Signalée disparue par son amie d'enfance Nickole Atkinson, Shanann est recherchée dès le lundi après-midi. Chris Watts joue l'époux dévasté devant les caméras locales, mais son manque flagrant d'émotions alerte le FBI. Convoqué au poste le 15 août, l'agent Tammy Lee lui fait passer un test de détecteur de mensonges (polygraphe). Ses résultats révèlent un stress hors norme. Tammy Lee emploie alors une technique de manipulation habile : elle suggère à Chris que Shanann a peut-être fait du mal aux enfants et qu'il a agi sous le coup de la colère pour se venger. Cédant à la pression, Chris s'empare de ce scénario fictif pour formuler ses premiers aveux.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">⚖️ LE PROCÈS ET LE DESTIN DU TUEUR</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Confronté aux conclusions scientifiques de l'autopsie des petites filles, Chris Watts abandonne rapidement son mensonge de défense. En novembre 2018, afin d'éviter la peine de mort à la demande expresse de la famille de Shanann, il plaide coupable de tous les chefs d'accusation. Il est condamné à <strong>cinq peines de prison à perpétuité consécutives, sans aucune possibilité d'aménagement de peine</strong>.</p>\n                ",
+      "content_html_sha256": "28396b22b85ee03b470cbefeb665fe6623dd0ba8a8a952fdf92fa8bc6a347b3b",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 RENCONTRE ET APPARENCE DE BONHEUR"
+        },
+        {
+          "tag": "p",
+          "text": "Chris Watts rencontre Shanann Rzucek en 2010 sur Facebook alors qu'elle traverse une phase difficile, luttant contre un lupus agressif. Shanann, une femme dynamique originaire de Caroline du Nord, trouve en Chris un homme calme, attentionné, presque timide, qui l'aide à surmonter sa maladie. Ils se marient en 2012 et déménagent dans une immense maison à Frederick, dans le Colorado. Shanann travaille dans la vente directe et documente chaque instant de leur vie de famille parfaite sur les réseaux sociaux. Derrière les sourires virtuels se cache pourtant une crise financière aiguë : le couple accumule des dettes massives et frôle la faillite."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 LA GLISSADE : LA RENCONTRE DE NICHOL KESSINGER"
+        },
+        {
+          "tag": "p",
+          "text": "Au cours de l'été 2018, alors que Shanann est partie en vacances pendant six semaines chez ses parents avec leurs filles Bella (4 ans) et Celeste (3 ans), Chris reste seul pour travailler chez Anadarko Petroleum. Il y entame une liaison passionnée avec Nichol Kessinger, une collègue géologue. Nichol le croit en instance de divorce. Pour la première fois de sa vie, Chris expérimente une liberté totale et commence à voir sa propre famille comme un fardeau financier et émotionnel insupportable dont il doit se libérer pour réinventer sa vie."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LE DÉROULEMENT DU DRAME DU 13 AOÛT 2018"
+        },
+        {
+          "tag": "p",
+          "text": "Shanann rentre d'un voyage d'affaires à 2h00 du matin. Une explication houleuse éclate dans leur chambre conjugale. Chris refuse d'assumer la confrontation et étrangle Shanann à mains nues alors qu'elle est enceinte de 15 semaines. Le drame prend une tournure encore plus horrible lorsque Bella et Celeste se réveillent. Chris charge le corps inanimé de Shanann à l'arrière de son pick-up professionnel et force les deux fillettes, terrorisées, à monter à bord. Il conduit pendant 45 minutes vers un site pétrolier isolé de son entreprise. Sur place, il étouffe Celeste sous les yeux de sa sœur aînée avant de jeter son corps dans une cuve de pétrole brut. Il s'en prend ensuite à Bella qui le supplie d'épargner sa vie, avant de l'enterrer sommairement à proximité."
+        },
+        {
+          "tag": "h4",
+          "text": "🎙️ UN INTERROGATOIRE SOUS HAUTE TENSION PSYCHOLOGIQUE"
+        },
+        {
+          "tag": "p",
+          "text": "Signalée disparue par son amie d'enfance Nickole Atkinson, Shanann est recherchée dès le lundi après-midi. Chris Watts joue l'époux dévasté devant les caméras locales, mais son manque flagrant d'émotions alerte le FBI. Convoqué au poste le 15 août, l'agent Tammy Lee lui fait passer un test de détecteur de mensonges (polygraphe). Ses résultats révèlent un stress hors norme. Tammy Lee emploie alors une technique de manipulation habile : elle suggère à Chris que Shanann a peut-être fait du mal aux enfants et qu'il a agi sous le coup de la colère pour se venger. Cédant à la pression, Chris s'empare de ce scénario fictif pour formuler ses premiers aveux."
+        },
+        {
+          "tag": "h4",
+          "text": "⚖️ LE PROCÈS ET LE DESTIN DU TUEUR"
+        },
+        {
+          "tag": "p",
+          "text": "Confronté aux conclusions scientifiques de l'autopsie des petites filles, Chris Watts abandonne rapidement son mensonge de défense. En novembre 2018, afin d'éviter la peine de mort à la demande expresse de la famille de Shanann, il plaide coupable de tous les chefs d'accusation. Il est condamné à cinq peines de prison à perpétuité consécutives, sans aucune possibilité d'aménagement de peine."
+        }
+      ],
+      "content": "👥 RENCONTRE ET APPARENCE DE BONHEUR\n\nChris Watts rencontre Shanann Rzucek en 2010 sur Facebook alors qu'elle traverse une phase difficile, luttant contre un lupus agressif. Shanann, une femme dynamique originaire de Caroline du Nord, trouve en Chris un homme calme, attentionné, presque timide, qui l'aide à surmonter sa maladie. Ils se marient en 2012 et déménagent dans une immense maison à Frederick, dans le Colorado. Shanann travaille dans la vente directe et documente chaque instant de leur vie de famille parfaite sur les réseaux sociaux. Derrière les sourires virtuels se cache pourtant une crise financière aiguë : le couple accumule des dettes massives et frôle la faillite.\n\n🕒 LA GLISSADE : LA RENCONTRE DE NICHOL KESSINGER\n\nAu cours de l'été 2018, alors que Shanann est partie en vacances pendant six semaines chez ses parents avec leurs filles Bella (4 ans) et Celeste (3 ans), Chris reste seul pour travailler chez Anadarko Petroleum. Il y entame une liaison passionnée avec Nichol Kessinger, une collègue géologue. Nichol le croit en instance de divorce. Pour la première fois de sa vie, Chris expérimente une liberté totale et commence à voir sa propre famille comme un fardeau financier et émotionnel insupportable dont il doit se libérer pour réinventer sa vie.\n\n💀 LE DÉROULEMENT DU DRAME DU 13 AOÛT 2018\n\nShanann rentre d'un voyage d'affaires à 2h00 du matin. Une explication houleuse éclate dans leur chambre conjugale. Chris refuse d'assumer la confrontation et étrangle Shanann à mains nues alors qu'elle est enceinte de 15 semaines. Le drame prend une tournure encore plus horrible lorsque Bella et Celeste se réveillent. Chris charge le corps inanimé de Shanann à l'arrière de son pick-up professionnel et force les deux fillettes, terrorisées, à monter à bord. Il conduit pendant 45 minutes vers un site pétrolier isolé de son entreprise. Sur place, il étouffe Celeste sous les yeux de sa sœur aînée avant de jeter son corps dans une cuve de pétrole brut. Il s'en prend ensuite à Bella qui le supplie d'épargner sa vie, avant de l'enterrer sommairement à proximité.\n\n🎙️ UN INTERROGATOIRE SOUS HAUTE TENSION PSYCHOLOGIQUE\n\nSignalée disparue par son amie d'enfance Nickole Atkinson, Shanann est recherchée dès le lundi après-midi. Chris Watts joue l'époux dévasté devant les caméras locales, mais son manque flagrant d'émotions alerte le FBI. Convoqué au poste le 15 août, l'agent Tammy Lee lui fait passer un test de détecteur de mensonges (polygraphe). Ses résultats révèlent un stress hors norme. Tammy Lee emploie alors une technique de manipulation habile : elle suggère à Chris que Shanann a peut-être fait du mal aux enfants et qu'il a agi sous le coup de la colère pour se venger. Cédant à la pression, Chris s'empare de ce scénario fictif pour formuler ses premiers aveux.\n\n⚖️ LE PROCÈS ET LE DESTIN DU TUEUR\n\nConfronté aux conclusions scientifiques de l'autopsie des petites filles, Chris Watts abandonne rapidement son mensonge de défense. En novembre 2018, afin d'éviter la peine de mort à la demande expresse de la famille de Shanann, il plaide coupable de tous les chefs d'accusation. Il est condamné à cinq peines de prison à perpétuité consécutives, sans aucune possibilité d'aménagement de peine.",
+      "provenance": {
+        "commit": "5f488f8eb6f2f753655123ae393f13eedf92a87d",
+        "path": "frontend/histoires.html",
+        "blob": "ed5fbe7f6c2bbd8c1bafed49b36ac7f329088bd4",
+        "record_line": 86
+      },
+      "original_image": "images/watts_main.jpg",
+      "gallery": [
+        {
+          "url": "images/watts_mugshot.jpg",
+          "label": "Cliché d'identité judiciaire officiel de Chris Watts"
+        },
+        {
+          "url": "images/watts_family.jpg",
+          "label": "Shanann, Bella et Celeste Watts (Photo de famille)"
+        },
+        {
+          "url": "images/watts_site.jpg",
+          "label": "Le site pétrolier Anadarko où les corps ont été retrouvés"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Nickole Atkinson (Amie proche, lors de l'appel d'urgence)",
+          "text": "« Elle ne manquait jamais un rendez-vous médical pour son bébé, et sa voiture était encore dans l'allée avec tous ses effets personnels à l'intérieur. J'ai tout de suite compris que Chris lui avait fait du mal. »"
+        },
+        {
+          "role": "Frank Rzucek (Père de Shanann, à la barre du tribunal)",
+          "text": "« Je t'ai fait confiance pour protéger ma fille et mes petites-filles. Tu les as jetées comme des ordures ménagères. Tu es un lâche dénué de toute trace d'humanité. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Mcskyz — L'Affaire Chris Watts (Le pire père de famille)",
+          "url": "https://www.youtube.com/watch?v=2n-wM0vS3_I"
+        },
+        {
+          "label": "Sondage Criminel — Analyse complète du polygraphe de Chris Watts",
+          "url": "https://www.youtube.com/watch?v=F_YwZ2ZzX6Y"
+        },
+        {
+          "label": "Rapports de perquisition et transcriptions - Colorado Bureau of Investigation",
+          "url": "https://www.youtube.com/watch?v=bL8b6mO9Aks"
+        }
+      ]
+    },
+    {
+      "legacy_id": "h3",
+      "id": 103,
+      "slug": "michelle-carter",
+      "title": "Chapitre III : Les Mots Mortels de Michelle Carter",
+      "summary": "L'analyse juridique de l'affaire Conrad Roy : comment de simples SMS ont conduit à la mort d'un adolescent et à un procès historique.",
+      "category_id": 1,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 LA RENCONTRE ET LES FRAGILITÉS COMMUNES</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Conrad Roy III et Michelle Carter se rencontrent en 2012 lors de vacances familiales en Floride. Tous deux originaires du Massachusetts, ils habitent à une cinquantaine de kilomètres l'un de l'autre mais entretiennent une relation presque exclusivement virtuelle. Conrad est un adolescent sensible, qui souffre d'anxiété chronique et de dépression depuis le deuil conflictuel de ses parents. Michelle combat de son côté des troubles sévères de l'alimentation et souffre d'un profond manque de reconnaissance sociale dans son lycée de Plainville.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 AVANT LE DRAME : LA QUÊTE OBSESSIONNELLE D'ATTENTION</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Au fil des mois, alors que Conrad partage ouvertement ses pulsions d'autolyse, Michelle bascule d'une attitude d'écoute à une incitation toxique. Souhaitant jouer le rôle de la 'petite amie en deuil' auprès de ses camarades pour susciter la pitié et l'attention, elle commence à planifier activement la fin de l'adolescent, lui suggérant des méthodes, balayant ses doutes et lui reprochant de ne pas tenir sa parole.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LE CRIME TEXTUEL DU 12 JUILLET 2014</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Conrad gare sa camionnette sur le parking d'un supermarché Kmart de Fairhaven et active un nettoyeur à pression thermique dégageant du monoxyde de carbone. Pris de panique face aux premiers effets d'asphyxie, l'adolescent sort de l'habitacle pour respirer de l'air frais. Il appelle Michelle Carter au téléphone. C'est à ce moment précis qu'elle formule l'ordre fatal par SMS et de vive voix : 'Remonte dans le foutu camion'. Conrad obéit. Michelle reste en ligne, écoutant ses derniers râles d'agonie sans jamais alerter les secours ou sa famille.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">⚖️ UN PROCÈS JURIDIQUE SANS PRÉCÉDENT</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">L'affaire éclate lorsque la police extrait les données du téléphone de Conrad Roy. Les enquêteurs découvrent plus de 4 000 messages d'incitation. Lors du procès de 2017, la défense soutient que des SMS ne peuvent pas physiquement tuer un être humain et invoque la liberté d'expression. Le parquet démontre au contraire que la présence virtuelle et autoritaire de Michelle Carter a neutralisé l'instinct de survie de Conrad. Elle est déclarée coupable d'homicide involontaire et condamnée à <strong>15 mois de prison ferme</strong>.</p>\n                ",
+      "content_html_sha256": "3c84da15b940377187ddce16e653f48cd2bdd21801f68def1b66a4d6d6aa1f27",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 LA RENCONTRE ET LES FRAGILITÉS COMMUNES"
+        },
+        {
+          "tag": "p",
+          "text": "Conrad Roy III et Michelle Carter se rencontrent en 2012 lors de vacances familiales en Floride. Tous deux originaires du Massachusetts, ils habitent à une cinquantaine de kilomètres l'un de l'autre mais entretiennent une relation presque exclusivement virtuelle. Conrad est un adolescent sensible, qui souffre d'anxiété chronique et de dépression depuis le deuil conflictuel de ses parents. Michelle combat de son côté des troubles sévères de l'alimentation et souffre d'un profond manque de reconnaissance sociale dans son lycée de Plainville."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 AVANT LE DRAME : LA QUÊTE OBSESSIONNELLE D'ATTENTION"
+        },
+        {
+          "tag": "p",
+          "text": "Au fil des mois, alors que Conrad partage ouvertement ses pulsions d'autolyse, Michelle bascule d'une attitude d'écoute à une incitation toxique. Souhaitant jouer le rôle de la 'petite amie en deuil' auprès de ses camarades pour susciter la pitié et l'attention, elle commence à planifier activement la fin de l'adolescent, lui suggérant des méthodes, balayant ses doutes et lui reprochant de ne pas tenir sa parole."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LE CRIME TEXTUEL DU 12 JUILLET 2014"
+        },
+        {
+          "tag": "p",
+          "text": "Conrad gare sa camionnette sur le parking d'un supermarché Kmart de Fairhaven et active un nettoyeur à pression thermique dégageant du monoxyde de carbone. Pris de panique face aux premiers effets d'asphyxie, l'adolescent sort de l'habitacle pour respirer de l'air frais. Il appelle Michelle Carter au téléphone. C'est à ce moment précis qu'elle formule l'ordre fatal par SMS et de vive voix : 'Remonte dans le foutu camion'. Conrad obéit. Michelle reste en ligne, écoutant ses derniers râles d'agonie sans jamais alerter les secours ou sa famille."
+        },
+        {
+          "tag": "h4",
+          "text": "⚖️ UN PROCÈS JURIDIQUE SANS PRÉCÉDENT"
+        },
+        {
+          "tag": "p",
+          "text": "L'affaire éclate lorsque la police extrait les données du téléphone de Conrad Roy. Les enquêteurs découvrent plus de 4 000 messages d'incitation. Lors du procès de 2017, la défense soutient que des SMS ne peuvent pas physiquement tuer un être humain et invoque la liberté d'expression. Le parquet démontre au contraire que la présence virtuelle et autoritaire de Michelle Carter a neutralisé l'instinct de survie de Conrad. Elle est déclarée coupable d'homicide involontaire et condamnée à 15 mois de prison ferme."
+        }
+      ],
+      "content": "👥 LA RENCONTRE ET LES FRAGILITÉS COMMUNES\n\nConrad Roy III et Michelle Carter se rencontrent en 2012 lors de vacances familiales en Floride. Tous deux originaires du Massachusetts, ils habitent à une cinquantaine de kilomètres l'un de l'autre mais entretiennent une relation presque exclusivement virtuelle. Conrad est un adolescent sensible, qui souffre d'anxiété chronique et de dépression depuis le deuil conflictuel de ses parents. Michelle combat de son côté des troubles sévères de l'alimentation et souffre d'un profond manque de reconnaissance sociale dans son lycée de Plainville.\n\n🕒 AVANT LE DRAME : LA QUÊTE OBSESSIONNELLE D'ATTENTION\n\nAu fil des mois, alors que Conrad partage ouvertement ses pulsions d'autolyse, Michelle bascule d'une attitude d'écoute à une incitation toxique. Souhaitant jouer le rôle de la 'petite amie en deuil' auprès de ses camarades pour susciter la pitié et l'attention, elle commence à planifier activement la fin de l'adolescent, lui suggérant des méthodes, balayant ses doutes et lui reprochant de ne pas tenir sa parole.\n\n💀 LE CRIME TEXTUEL DU 12 JUILLET 2014\n\nConrad gare sa camionnette sur le parking d'un supermarché Kmart de Fairhaven et active un nettoyeur à pression thermique dégageant du monoxyde de carbone. Pris de panique face aux premiers effets d'asphyxie, l'adolescent sort de l'habitacle pour respirer de l'air frais. Il appelle Michelle Carter au téléphone. C'est à ce moment précis qu'elle formule l'ordre fatal par SMS et de vive voix : 'Remonte dans le foutu camion'. Conrad obéit. Michelle reste en ligne, écoutant ses derniers râles d'agonie sans jamais alerter les secours ou sa famille.\n\n⚖️ UN PROCÈS JURIDIQUE SANS PRÉCÉDENT\n\nL'affaire éclate lorsque la police extrait les données du téléphone de Conrad Roy. Les enquêteurs découvrent plus de 4 000 messages d'incitation. Lors du procès de 2017, la défense soutient que des SMS ne peuvent pas physiquement tuer un être humain et invoque la liberté d'expression. Le parquet démontre au contraire que la présence virtuelle et autoritaire de Michelle Carter a neutralisé l'instinct de survie de Conrad. Elle est déclarée coupable d'homicide involontaire et condamnée à 15 mois de prison ferme.",
+      "provenance": {
+        "commit": "5f488f8eb6f2f753655123ae393f13eedf92a87d",
+        "path": "frontend/histoires.html",
+        "blob": "ed5fbe7f6c2bbd8c1bafed49b36ac7f329088bd4",
+        "record_line": 122
+      },
+      "original_image": "images/carter_main.jpg",
+      "gallery": [
+        {
+          "url": "images/carter_mugshot.jpg",
+          "label": "Cliché d'identité judiciaire de Michelle Carter"
+        },
+        {
+          "url": "images/conrad_roy.jpg",
+          "label": "Portrait officiel de la victime Conrad Roy III"
+        },
+        {
+          "url": "images/carter_parking.jpg",
+          "label": "Le parking Kmart de Fairhaven où le véhicule a été stationné"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Lynn Roy (Mère de Conrad, lors du procès)",
+          "text": "« Mon fils avait des projets, il venait de décrocher son brevet de capitaine. Elle a exploité sa vulnérabilité psychologique la plus intime pour s'offrir un rôle de deuil éploré. »"
+        },
+        {
+          "role": "Juge Lawrence Moniz (Lors de l'énoncé du verdict)",
+          "text": "« Ses directives ont scellé le destin de cet adolescent. En lui ordonnant de remonter dans ce véhicule mortel alors qu'il manifestait la volonté d'en sortir, elle a causé sa perte de manière active. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Sondage Criminel — Condamnée à cause de ses SMS : L'Affaire Michelle Carter",
+          "url": "https://www.youtube.com/watch?v=68m7wW-p1C8"
+        },
+        {
+          "label": "L'Heure du Crime — Le cas de la manipulation par écrans",
+          "url": "https://www.youtube.com/results?search_query=michelle+carter+francais"
+        },
+        {
+          "label": "Rapport d'audience et attendu de jugement - Cour du Massachusetts",
+          "url": "https://www.youtube.com/results?search_query=Commonwealth+v+Michelle+Carter+Full+Trial"
+        }
+      ]
+    },
+    {
+      "legacy_id": "cc1",
+      "id": 201,
+      "slug": "anthonioz",
+      "title": "Dossier I : Le Mystère d'Anthonioz (Les Empreintes de la Nuit)",
+      "summary": "Une disparition inexpliquée lors d'une nuit de tempête, ne laissant que des traces de pas interrompues au milieu de nulle part.",
+      "category_id": 2,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 L'ENFANCE DE LÉA ET SA RENCONTRE AVEC LA MONTAGNE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Élevée dans les vallées alpines de Chambéry, Léa d'Anthonioz est une étudiante en lettres modernes de 21 ans, décrite par ses professeurs comme brillante mais d'un tempérament extrêmement anxieux. Depuis son enfance, elle partage avec son frère Marc une passion pour la randonnée et la solitude des hauteurs, trouvant dans les paysages enneigés un refuge à son stress quotidien. Sans aucun antécédent de fugue ni de détresse psychologique majeure, elle s'apprêtait à passer ses examens de fin d'année. Le week-end du 14 novembre, elle décide de séjourner seule dans le chalet familial isolé afin de réviser ses cours au calme.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 AVANT LE DRAME : UNE ROUTE DE TOURMENTE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">La nuit du drame, une tempête de neige historique s'abat sur la région. Malgré les avertissements météorologiques, Léa décide de reprendre la route vers Chambéry à bord de sa petite citadine. Sur la départementale D912, une route sinueuse bordée par des ravins et d'épaisses forêts de sapins, la visibilité est presque nulle. Marc, inquiet de ne pas la voir arriver, tente de l'appeler à plusieurs reprises. C'est à 23h04 que son téléphone sonne enfin.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LE DÉROULEMENT DE LA DISPARITION</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Au bout du fil, la voix de Léa est tremblante, coupée par les interférences de la tempête. Elle explique que sa voiture vient de tomber en panne au milieu de nulle part. Paniquée, elle chuchote qu'une berline sombre s'est garée à une cygantaine de mètres derrière elle, phares éteints, et qu'un homme semble l'observer à travers le pare-brise. Soudain, un bruit sourd et métallique retentit à l'appareil, suivi d'un cri étouffé, puis le signal se coupe définitivement. Marc contacte immédiatement la gendarmerie et prend la route malgré la tempête.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🔬 L'ÉNIGME DES EMPREINTES DANS LA NEIGE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">À 01h30, la patrouille de gendarmerie découvre le véhicule de Léa. La portière conducteur est grande ouverte, les clés sont restées sur le contact et les feux de détresse clignotent faiblement, projetant des ombres saccadées sur la neige fraîche. Les techniciens en identification criminelle relèvent les traces de pas de Léa. Ses empreintes s'éloignent de la portière, marchant de manière régulière sur environ 20 mètres avant de s'arrêter net au beau milieu de la chaussée. Autour de cette dernière trace, la neige est parfaitement vierge : aucune marque de lutte, aucun piétinement, et surtout, aucune trace d'autres pas humains ni de pneus appartenant à un second véhicule. Les chiens de piste amènent les gendarmes jusqu à cette ultime empreinte, puis tournent en rond, totalement désorientés par l'absence d'odeur résiduelle.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🎙️ LES INTERROGATOIRES ET LES COMPTES RENDUS</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">L'enquête se concentre rapidement sur Marc d'Anthonioz, le premier arrivé sur les lieux, et sur les rares automobilistes ayant emprunté la route ce soir-là. Marc est interrogé durant 14 heures consécutives. Son alibi technique (bornage de son téléphone et témoignages de voisins) confirme qu'il se trouvait bien chez lui au moment de l'appel de détresse de sa sœur. La gendarmerie étudie la piste d'un enlèvement par hélicoptère ou d'un engin spécialisé, mais les conditions de vent violentes et l'absence totale de bruit de moteur rapporté par les garde-forestiers locaux condamnent cette hypothèse. Douze ans après les faits, le dossier reste classé parmi les plus grands mystères criminels de la région.</p>\n                ",
+      "content_html_sha256": "5e2376c28c2c5be4fbe7e916f0a1240ca539c53bcb0ba396e4c4fff40c1e3d79",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 L'ENFANCE DE LÉA ET SA RENCONTRE AVEC LA MONTAGNE"
+        },
+        {
+          "tag": "p",
+          "text": "Élevée dans les vallées alpines de Chambéry, Léa d'Anthonioz est une étudiante en lettres modernes de 21 ans, décrite par ses professeurs comme brillante mais d'un tempérament extrêmement anxieux. Depuis son enfance, elle partage avec son frère Marc une passion pour la randonnée et la solitude des hauteurs, trouvant dans les paysages enneigés un refuge à son stress quotidien. Sans aucun antécédent de fugue ni de détresse psychologique majeure, elle s'apprêtait à passer ses examens de fin d'année. Le week-end du 14 novembre, elle décide de séjourner seule dans le chalet familial isolé afin de réviser ses cours au calme."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 AVANT LE DRAME : UNE ROUTE DE TOURMENTE"
+        },
+        {
+          "tag": "p",
+          "text": "La nuit du drame, une tempête de neige historique s'abat sur la région. Malgré les avertissements météorologiques, Léa décide de reprendre la route vers Chambéry à bord de sa petite citadine. Sur la départementale D912, une route sinueuse bordée par des ravins et d'épaisses forêts de sapins, la visibilité est presque nulle. Marc, inquiet de ne pas la voir arriver, tente de l'appeler à plusieurs reprises. C'est à 23h04 que son téléphone sonne enfin."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LE DÉROULEMENT DE LA DISPARITION"
+        },
+        {
+          "tag": "p",
+          "text": "Au bout du fil, la voix de Léa est tremblante, coupée par les interférences de la tempête. Elle explique que sa voiture vient de tomber en panne au milieu de nulle part. Paniquée, elle chuchote qu'une berline sombre s'est garée à une cygantaine de mètres derrière elle, phares éteints, et qu'un homme semble l'observer à travers le pare-brise. Soudain, un bruit sourd et métallique retentit à l'appareil, suivi d'un cri étouffé, puis le signal se coupe définitivement. Marc contacte immédiatement la gendarmerie et prend la route malgré la tempête."
+        },
+        {
+          "tag": "h4",
+          "text": "🔬 L'ÉNIGME DES EMPREINTES DANS LA NEIGE"
+        },
+        {
+          "tag": "p",
+          "text": "À 01h30, la patrouille de gendarmerie découvre le véhicule de Léa. La portière conducteur est grande ouverte, les clés sont restées sur le contact et les feux de détresse clignotent faiblement, projetant des ombres saccadées sur la neige fraîche. Les techniciens en identification criminelle relèvent les traces de pas de Léa. Ses empreintes s'éloignent de la portière, marchant de manière régulière sur environ 20 mètres avant de s'arrêter net au beau milieu de la chaussée. Autour de cette dernière trace, la neige est parfaitement vierge : aucune marque de lutte, aucun piétinement, et surtout, aucune trace d'autres pas humains ni de pneus appartenant à un second véhicule. Les chiens de piste amènent les gendarmes jusqu à cette ultime empreinte, puis tournent en rond, totalement désorientés par l'absence d'odeur résiduelle."
+        },
+        {
+          "tag": "h4",
+          "text": "🎙️ LES INTERROGATOIRES ET LES COMPTES RENDUS"
+        },
+        {
+          "tag": "p",
+          "text": "L'enquête se concentre rapidement sur Marc d'Anthonioz, le premier arrivé sur les lieux, et sur les rares automobilistes ayant emprunté la route ce soir-là. Marc est interrogé durant 14 heures consécutives. Son alibi technique (bornage de son téléphone et témoignages de voisins) confirme qu'il se trouvait bien chez lui au moment de l'appel de détresse de sa sœur. La gendarmerie étudie la piste d'un enlèvement par hélicoptère ou d'un engin spécialisé, mais les conditions de vent violentes et l'absence totale de bruit de moteur rapporté par les garde-forestiers locaux condamnent cette hypothèse. Douze ans après les faits, le dossier reste classé parmi les plus grands mystères criminels de la région."
+        }
+      ],
+      "content": "👥 L'ENFANCE DE LÉA ET SA RENCONTRE AVEC LA MONTAGNE\n\nÉlevée dans les vallées alpines de Chambéry, Léa d'Anthonioz est une étudiante en lettres modernes de 21 ans, décrite par ses professeurs comme brillante mais d'un tempérament extrêmement anxieux. Depuis son enfance, elle partage avec son frère Marc une passion pour la randonnée et la solitude des hauteurs, trouvant dans les paysages enneigés un refuge à son stress quotidien. Sans aucun antécédent de fugue ni de détresse psychologique majeure, elle s'apprêtait à passer ses examens de fin d'année. Le week-end du 14 novembre, elle décide de séjourner seule dans le chalet familial isolé afin de réviser ses cours au calme.\n\n🕒 AVANT LE DRAME : UNE ROUTE DE TOURMENTE\n\nLa nuit du drame, une tempête de neige historique s'abat sur la région. Malgré les avertissements météorologiques, Léa décide de reprendre la route vers Chambéry à bord de sa petite citadine. Sur la départementale D912, une route sinueuse bordée par des ravins et d'épaisses forêts de sapins, la visibilité est presque nulle. Marc, inquiet de ne pas la voir arriver, tente de l'appeler à plusieurs reprises. C'est à 23h04 que son téléphone sonne enfin.\n\n💀 LE DÉROULEMENT DE LA DISPARITION\n\nAu bout du fil, la voix de Léa est tremblante, coupée par les interférences de la tempête. Elle explique que sa voiture vient de tomber en panne au milieu de nulle part. Paniquée, elle chuchote qu'une berline sombre s'est garée à une cygantaine de mètres derrière elle, phares éteints, et qu'un homme semble l'observer à travers le pare-brise. Soudain, un bruit sourd et métallique retentit à l'appareil, suivi d'un cri étouffé, puis le signal se coupe définitivement. Marc contacte immédiatement la gendarmerie et prend la route malgré la tempête.\n\n🔬 L'ÉNIGME DES EMPREINTES DANS LA NEIGE\n\nÀ 01h30, la patrouille de gendarmerie découvre le véhicule de Léa. La portière conducteur est grande ouverte, les clés sont restées sur le contact et les feux de détresse clignotent faiblement, projetant des ombres saccadées sur la neige fraîche. Les techniciens en identification criminelle relèvent les traces de pas de Léa. Ses empreintes s'éloignent de la portière, marchant de manière régulière sur environ 20 mètres avant de s'arrêter net au beau milieu de la chaussée. Autour de cette dernière trace, la neige est parfaitement vierge : aucune marque de lutte, aucun piétinement, et surtout, aucune trace d'autres pas humains ni de pneus appartenant à un second véhicule. Les chiens de piste amènent les gendarmes jusqu à cette ultime empreinte, puis tournent en rond, totalement désorientés par l'absence d'odeur résiduelle.\n\n🎙️ LES INTERROGATOIRES ET LES COMPTES RENDUS\n\nL'enquête se concentre rapidement sur Marc d'Anthonioz, le premier arrivé sur les lieux, et sur les rares automobilistes ayant emprunté la route ce soir-là. Marc est interrogé durant 14 heures consécutives. Son alibi technique (bornage de son téléphone et témoignages de voisins) confirme qu'il se trouvait bien chez lui au moment de l'appel de détresse de sa sœur. La gendarmerie étudie la piste d'un enlèvement par hélicoptère ou d'un engin spécialisé, mais les conditions de vent violentes et l'absence totale de bruit de moteur rapporté par les garde-forestiers locaux condamnent cette hypothèse. Douze ans après les faits, le dossier reste classé parmi les plus grands mystères criminels de la région.",
+      "provenance": {
+        "commit": "c26b1b1adee4ed0a27041174c6b0d3a632898e34",
+        "path": "frontend/coldscases.html",
+        "blob": "08d3ad675fc80ea267294a5455531f4ee0e784f6",
+        "record_line": 50
+      },
+      "original_image": "images/cc1_main.jpg",
+      "gallery": [
+        {
+          "url": "images/cc1_victim.jpg",
+          "label": "Léa d'Anthonioz (Photo de classe - 2024)"
+        },
+        {
+          "url": "images/cc1_clues.jpg",
+          "label": "Cliché gendarmerie : Dernières empreintes dans la neige"
+        },
+        {
+          "url": "images/cc1_scene.jpg",
+          "label": "Le véhicule retrouvé abandonné sur la départementale D912"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Marc d'Anthonioz (Frère de la disparue)",
+          "text": "« Elle hurlait que les phares de la voiture s'étaient éteints derrière elle. J'ai entendu le vent s'engouffrer dans son téléphone, puis un bruit d'acier. Depuis ce jour, ma vie s'est arrêtée sur cette route. »"
+        },
+        {
+          "role": "Lieutenant de Gendarmerie Jean-Luc Roy",
+          "text": "« Scientifiquement, c'est impossible. Une personne de 60 kg ne s'envole pas sans laisser d'impact au sol ou de traces de pas de ravisseur autour d'elle. Nous avons passé la zone au peigne fin sur 5 kilomètres, en vain. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Mcskyz — Le Mystère d'Anthonioz (Disparue sans laisser de traces)",
+          "url": "https://www.youtube.com/results?search_query=Mcskyz+disparitions+mysterieuses"
+        },
+        {
+          "label": "L'Heure du Crime — L'énigme de la route départementale D912",
+          "url": "https://www.youtube.com/results?search_query=Heure+du+crime+disparition+montagne"
+        }
+      ]
+    },
+    {
+      "legacy_id": "cc2",
+      "id": 202,
+      "slug": "noirval",
+      "title": "Dossier II : L'Inconnue de la Plage de Noirval",
+      "summary": "Retrouvée sur le sable sans aucune pièce d'identité, personne ne sait qui elle est ni comment elle est arrivée là.",
+      "category_id": 2,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 UNE APPARITION DE NULLE PART</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Le 4 octobre, le petit village côtier de Noirval se réveille sous un épais brouillard marin. Aucun habitant ne se souvient avoir aperçu cette femme élégante arriver par le train de la veille ou descendre dans l'unique hôtel de la côte. D'une trentaine d'années, aux traits fins et de type européen, elle semblait appartenir à une classe sociale aisée. Pourtant, aucun sac à main, aucun téléphone portable et aucune clé n'ont été retrouvés à proximité de sa dépouille.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 AVANT LE DRAME : LE MYSTÈRE DES SIGNAUX LUMINEUX</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">La nuit de la découverte, aux alentours de 3h00 du matin, le gardien du vieux phare de Noirval, habitué à observer les eaux sombres de la Manche, remarque une activité inhabituelle sur la plage de galets. À travers ses jumelles de surveillance, he distingue des signaux lumineux verts intermittents émis depuis la grève en direction du large. Quelques minutes plus tard, il aperçoit la silhouette d'une vedette rapide circulant tous feux éteints, qui s'éloigne à vive allure vers les eaux internationales.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LA DÉCOUVERTE ET L'AUTOPSIE SANS RÉPONSES</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">À 06h15, un promeneur local découvre le corps sans vie de l'Inconnue, allongé sur le dos, les mains croisées sur la poitrine, comme endormie paisiblement sur les galets humides. L'examen du médecin légiste jette un froid glacial sur l'enquête : le corps ne présente aucun hématome, aucune trace d'asphyxie, d'eau dans les poumons, ni de lutte. Plus troublant encore, les analyses toxicologiques complètes n'indiquent aucune trace de poison, de drogue ou d'alcool. Son cœur s'est arrêté de battre subitement, sans aucune explication médicale rationnelle.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🔬 DES INDICES SOIGNEUSEMENT EFFACÉS</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">L'analyse minutieuse de sa garde-robe révèle une organisation méthodique. Elle portait un manteau de haute couture italienne et une robe de soie, mais toutes les étiquettes de marque, de provenance et d'entretien ont été méticuleusement découpées à l'aide de petits ciseaux fins. Les enquêteurs prélèvent ses empreintes digitales et établissent son profil ADN, qu'ils soumettent aux fichiers d'Interpol et des services secrets alliés. Le verdict tombe : elle n'apparaît dans aucun fichier mondial et aucune disparition correspondant à son profil n'a jamais été signalée.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">⚖️ LES PISTES DE L'ESPIONNAGE ET LA CONCLUSION</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Les dépositions du gardien du phare et des marins-pêcheurs orientent l'enquête policière vers une opération clandestine d'espionnage liée aux bases militaires navales voisines. L'hypothèse principale suggère que l'Inconnue était un agent de renseignement étranger \"déposé\" ou \"éliminé\" par une puissance rivale à l'aide d'une arme indétectable provoquant un arrêt cardiaque instantané. Enterrée sous une plaque anonyme portant la simple mention \"L'Inconnue de Noirval\", son identité demeure l'un des plus grands secrets de la côte.</p>\n                ",
+      "content_html_sha256": "d819f8662fcb54a2880381edde18bf93cbf9371e4b9c09295a83d391469dbaa5",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 UNE APPARITION DE NULLE PART"
+        },
+        {
+          "tag": "p",
+          "text": "Le 4 octobre, le petit village côtier de Noirval se réveille sous un épais brouillard marin. Aucun habitant ne se souvient avoir aperçu cette femme élégante arriver par le train de la veille ou descendre dans l'unique hôtel de la côte. D'une trentaine d'années, aux traits fins et de type européen, elle semblait appartenir à une classe sociale aisée. Pourtant, aucun sac à main, aucun téléphone portable et aucune clé n'ont été retrouvés à proximité de sa dépouille."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 AVANT LE DRAME : LE MYSTÈRE DES SIGNAUX LUMINEUX"
+        },
+        {
+          "tag": "p",
+          "text": "La nuit de la découverte, aux alentours de 3h00 du matin, le gardien du vieux phare de Noirval, habitué à observer les eaux sombres de la Manche, remarque une activité inhabituelle sur la plage de galets. À travers ses jumelles de surveillance, he distingue des signaux lumineux verts intermittents émis depuis la grève en direction du large. Quelques minutes plus tard, il aperçoit la silhouette d'une vedette rapide circulant tous feux éteints, qui s'éloigne à vive allure vers les eaux internationales."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LA DÉCOUVERTE ET L'AUTOPSIE SANS RÉPONSES"
+        },
+        {
+          "tag": "p",
+          "text": "À 06h15, un promeneur local découvre le corps sans vie de l'Inconnue, allongé sur le dos, les mains croisées sur la poitrine, comme endormie paisiblement sur les galets humides. L'examen du médecin légiste jette un froid glacial sur l'enquête : le corps ne présente aucun hématome, aucune trace d'asphyxie, d'eau dans les poumons, ni de lutte. Plus troublant encore, les analyses toxicologiques complètes n'indiquent aucune trace de poison, de drogue ou d'alcool. Son cœur s'est arrêté de battre subitement, sans aucune explication médicale rationnelle."
+        },
+        {
+          "tag": "h4",
+          "text": "🔬 DES INDICES SOIGNEUSEMENT EFFACÉS"
+        },
+        {
+          "tag": "p",
+          "text": "L'analyse minutieuse de sa garde-robe révèle une organisation méthodique. Elle portait un manteau de haute couture italienne et une robe de soie, mais toutes les étiquettes de marque, de provenance et d'entretien ont été méticuleusement découpées à l'aide de petits ciseaux fins. Les enquêteurs prélèvent ses empreintes digitales et établissent son profil ADN, qu'ils soumettent aux fichiers d'Interpol et des services secrets alliés. Le verdict tombe : elle n'apparaît dans aucun fichier mondial et aucune disparition correspondant à son profil n'a jamais été signalée."
+        },
+        {
+          "tag": "h4",
+          "text": "⚖️ LES PISTES DE L'ESPIONNAGE ET LA CONCLUSION"
+        },
+        {
+          "tag": "p",
+          "text": "Les dépositions du gardien du phare et des marins-pêcheurs orientent l'enquête policière vers une opération clandestine d'espionnage liée aux bases militaires navales voisines. L'hypothèse principale suggère que l'Inconnue était un agent de renseignement étranger \"déposé\" ou \"éliminé\" par une puissance rivale à l'aide d'une arme indétectable provoquant un arrêt cardiaque instantané. Enterrée sous une plaque anonyme portant la simple mention \"L'Inconnue de Noirval\", son identité demeure l'un des plus grands secrets de la côte."
+        }
+      ],
+      "content": "👥 UNE APPARITION DE NULLE PART\n\nLe 4 octobre, le petit village côtier de Noirval se réveille sous un épais brouillard marin. Aucun habitant ne se souvient avoir aperçu cette femme élégante arriver par le train de la veille ou descendre dans l'unique hôtel de la côte. D'une trentaine d'années, aux traits fins et de type européen, elle semblait appartenir à une classe sociale aisée. Pourtant, aucun sac à main, aucun téléphone portable et aucune clé n'ont été retrouvés à proximité de sa dépouille.\n\n🕒 AVANT LE DRAME : LE MYSTÈRE DES SIGNAUX LUMINEUX\n\nLa nuit de la découverte, aux alentours de 3h00 du matin, le gardien du vieux phare de Noirval, habitué à observer les eaux sombres de la Manche, remarque une activité inhabituelle sur la plage de galets. À travers ses jumelles de surveillance, he distingue des signaux lumineux verts intermittents émis depuis la grève en direction du large. Quelques minutes plus tard, il aperçoit la silhouette d'une vedette rapide circulant tous feux éteints, qui s'éloigne à vive allure vers les eaux internationales.\n\n💀 LA DÉCOUVERTE ET L'AUTOPSIE SANS RÉPONSES\n\nÀ 06h15, un promeneur local découvre le corps sans vie de l'Inconnue, allongé sur le dos, les mains croisées sur la poitrine, comme endormie paisiblement sur les galets humides. L'examen du médecin légiste jette un froid glacial sur l'enquête : le corps ne présente aucun hématome, aucune trace d'asphyxie, d'eau dans les poumons, ni de lutte. Plus troublant encore, les analyses toxicologiques complètes n'indiquent aucune trace de poison, de drogue ou d'alcool. Son cœur s'est arrêté de battre subitement, sans aucune explication médicale rationnelle.\n\n🔬 DES INDICES SOIGNEUSEMENT EFFACÉS\n\nL'analyse minutieuse de sa garde-robe révèle une organisation méthodique. Elle portait un manteau de haute couture italienne et une robe de soie, mais toutes les étiquettes de marque, de provenance et d'entretien ont été méticuleusement découpées à l'aide de petits ciseaux fins. Les enquêteurs prélèvent ses empreintes digitales et établissent son profil ADN, qu'ils soumettent aux fichiers d'Interpol et des services secrets alliés. Le verdict tombe : elle n'apparaît dans aucun fichier mondial et aucune disparition correspondant à son profil n'a jamais été signalée.\n\n⚖️ LES PISTES DE L'ESPIONNAGE ET LA CONCLUSION\n\nLes dépositions du gardien du phare et des marins-pêcheurs orientent l'enquête policière vers une opération clandestine d'espionnage liée aux bases militaires navales voisines. L'hypothèse principale suggère que l'Inconnue était un agent de renseignement étranger \"déposé\" ou \"éliminé\" par une puissance rivale à l'aide d'une arme indétectable provoquant un arrêt cardiaque instantané. Enterrée sous une plaque anonyme portant la simple mention \"L'Inconnue de Noirval\", son identité demeure l'un des plus grands secrets de la côte.",
+      "provenance": {
+        "commit": "c26b1b1adee4ed0a27041174c6b0d3a632898e34",
+        "path": "frontend/coldscases.html",
+        "blob": "08d3ad675fc80ea267294a5455531f4ee0e784f6",
+        "record_line": 85
+      },
+      "original_image": "images/cc2_main.jpg",
+      "gallery": [
+        {
+          "url": "images/cc2_victim.jpg",
+          "label": "Portrait robot officiel diffusé par Interpol"
+        },
+        {
+          "url": "images/cc2_lighthouse.jpg",
+          "label": "Le phare de Noirval dominant la scène de crime"
+        },
+        {
+          "url": "images/cc2_beach.jpg",
+          "label": "Cliché judiciaire : Zone de la découverte du corps"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Dr. Marianne Costa (Médecin Légiste principal)",
+          "text": "« En trente ans de carrière, je n'ai jamais vu ça. Organes parfaits, aucune trace de toxiques. C'est comme si quelqu'un avait appuyé sur l'interrupteur de sa vie à distance. »"
+        },
+        {
+          "role": "Joseph Le Gall (Gardien du Phare de Noirval)",
+          "text": "« Ces lueurs vertes sur la plage répondaient au bateau au large. Ce n'était pas des touristes égarés, c'était un code militaire de rendez-vous. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Squeezie — Le mystère de la femme sans identité (Noirval Case)",
+          "url": "https://www.youtube.com/results?search_query=Squeezie+corps+sans+identite"
+        },
+        {
+          "label": "Chasseur de Mystères — Qui était l'Inconnue de Noirval ?",
+          "url": "https://www.youtube.com/results?search_query=L%27inconnue+de+la+plage+mystere"
+        }
+      ]
+    },
+    {
+      "legacy_id": "cc3",
+      "id": 203,
+      "slug": "manoir-de-l-ombre",
+      "title": "Dossier III : Le Secret du Manoir de l'Ombre",
+      "summary": "Quatre membres d'une même famille se sont volatilisés pendant un dîner, laissant leurs assiettes encore pleines.",
+      "category_id": 2,
+      "image_url": null,
+      "content_html": "\n                    <h4 style=\"color:#e67e22; margin-top:20px; font-size:1.4rem;\">👥 LA FAMILLE BELMONT ET LA VIE AU DOMAINE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Propriétaires du Manoir de l'Ombre depuis les années 90, la famille Belmont est estimée de toute la communauté rurale locale. Jean Belmont (45 ans) est un notaire réputé pour son intégrité, tandis que son épouse Claire (42 ans) est une pianiste passionnée qui donne bénévolement des cours aux enfants du village. Leurs deux adolescents, Thomas (16 ans) et Emma (14 ans), mènent une scolarité exemplaire au collège régional. Sans aucune dette financière, conflit familial ou comportement suspect, rien ne laissait présager leur effroyable disparition.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🕒 LA DERNIÈRE MÉLODIE DU 12 SEPTEMBRE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Le soir du drame, vers 20h30, la voisine directe promène son chien le long des grilles du domaine. Elle aperçoit les fenêtres du grand salon éclairées d'une lueur chaleureuse et entend Claire interpréter au piano une sonate de Chopin particulièrement mélancolique. Tout semble paisible. À 21h00 précises, la musique s'arrête brusquement au milieu d'une mesure, laissant place à un silence pesant et inhabituel qui s'installe sur toute la propriété.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">💀 LE CONSTAT DE L'IMPOSSIBLE ÉVAPORATION</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Inquiet de ne pas voir Jean Belmont se présenter à son étude le lendemain, son associé prévient les autorités. Accompagnés d'un serrurier, les policiers pénètrent dans le manoir. La scène qui les attend défie toute logique : sur la table de la salle à manger, quatre assiettes de soupe chaude sont servies, la nourriture est à moitié consommée, et les verres sont encore pleins. Les téléphones portables de toute la famille sont posés sur la console de l'entrée, leurs portefeuilles contenant papiers d'identité et cartes bancaires sont restés dans les vestes, et les deux véhicules familiaux sont garés dans le garage fermé à clé.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🔬 UN MANOIR FERMÉ DE L'INTÉRIEUR</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Les enquêteurs scientifiques analysent les accès du manoir fortifié. Toutes les portes massives sont verrouillées à double tour de l'intérieur, les verrous des fenêtres de sécurité sont enclenchés, et le système d'alarme volumétrique haut de gamme est armé et actif. Aucune coupure de courant n'a été enregistrée et aucune présence étrangère n'a déclenché les capteurs thermiques intérieurs. L'examen de la vaisselle et de la nourriture ne révèle aucune trace de somnifères ni de substances chimiques d'endormissement.</p>\n\n                    <h4 style=\"color:#e67e22; font-size:1.4rem; margin-top:25px;\">🎙️ LES RECHERCHES ET LES THÉORIES DE LA POLICE</h4>\n                    <p style=\"line-height:1.8; color:#ccc; margin-bottom:15px;\">Les interrogatoires de l'entourage, des clients du cabinet de notaire et des camarades de classe de Thomas et Emma ne mènent à aucune piste. Les fouilles approfondies des parcs du domaine et des souterrains du manoir à l'aide de caméras thermiques et de chiens policiers ne révèlent rien. Vingt ans après les faits, la disparition de la famille Belmont demeure un dossier d'instruction ouvert, alimentant les théories les plus folles d'enlèvement organisé de l'intérieur ou de passage vers une autre dimension.</p>\n                ",
+      "content_html_sha256": "c8ccc5ad8fb3e0cefff0bc2d1add14c50745fb6d025cc48d18b865f06da627f9",
+      "blocks": [
+        {
+          "tag": "h4",
+          "text": "👥 LA FAMILLE BELMONT ET LA VIE AU DOMAINE"
+        },
+        {
+          "tag": "p",
+          "text": "Propriétaires du Manoir de l'Ombre depuis les années 90, la famille Belmont est estimée de toute la communauté rurale locale. Jean Belmont (45 ans) est un notaire réputé pour son intégrité, tandis que son épouse Claire (42 ans) est une pianiste passionnée qui donne bénévolement des cours aux enfants du village. Leurs deux adolescents, Thomas (16 ans) et Emma (14 ans), mènent une scolarité exemplaire au collège régional. Sans aucune dette financière, conflit familial ou comportement suspect, rien ne laissait présager leur effroyable disparition."
+        },
+        {
+          "tag": "h4",
+          "text": "🕒 LA DERNIÈRE MÉLODIE DU 12 SEPTEMBRE"
+        },
+        {
+          "tag": "p",
+          "text": "Le soir du drame, vers 20h30, la voisine directe promène son chien le long des grilles du domaine. Elle aperçoit les fenêtres du grand salon éclairées d'une lueur chaleureuse et entend Claire interpréter au piano une sonate de Chopin particulièrement mélancolique. Tout semble paisible. À 21h00 précises, la musique s'arrête brusquement au milieu d'une mesure, laissant place à un silence pesant et inhabituel qui s'installe sur toute la propriété."
+        },
+        {
+          "tag": "h4",
+          "text": "💀 LE CONSTAT DE L'IMPOSSIBLE ÉVAPORATION"
+        },
+        {
+          "tag": "p",
+          "text": "Inquiet de ne pas voir Jean Belmont se présenter à son étude le lendemain, son associé prévient les autorités. Accompagnés d'un serrurier, les policiers pénètrent dans le manoir. La scène qui les attend défie toute logique : sur la table de la salle à manger, quatre assiettes de soupe chaude sont servies, la nourriture est à moitié consommée, et les verres sont encore pleins. Les téléphones portables de toute la famille sont posés sur la console de l'entrée, leurs portefeuilles contenant papiers d'identité et cartes bancaires sont restés dans les vestes, et les deux véhicules familiaux sont garés dans le garage fermé à clé."
+        },
+        {
+          "tag": "h4",
+          "text": "🔬 UN MANOIR FERMÉ DE L'INTÉRIEUR"
+        },
+        {
+          "tag": "p",
+          "text": "Les enquêteurs scientifiques analysent les accès du manoir fortifié. Toutes les portes massives sont verrouillées à double tour de l'intérieur, les verrous des fenêtres de sécurité sont enclenchés, et le système d'alarme volumétrique haut de gamme est armé et actif. Aucune coupure de courant n'a été enregistrée et aucune présence étrangère n'a déclenché les capteurs thermiques intérieurs. L'examen de la vaisselle et de la nourriture ne révèle aucune trace de somnifères ni de substances chimiques d'endormissement."
+        },
+        {
+          "tag": "h4",
+          "text": "🎙️ LES RECHERCHES ET LES THÉORIES DE LA POLICE"
+        },
+        {
+          "tag": "p",
+          "text": "Les interrogatoires de l'entourage, des clients du cabinet de notaire et des camarades de classe de Thomas et Emma ne mènent à aucune piste. Les fouilles approfondies des parcs du domaine et des souterrains du manoir à l'aide de caméras thermiques et de chiens policiers ne révèlent rien. Vingt ans après les faits, la disparition de la famille Belmont demeure un dossier d'instruction ouvert, alimentant les théories les plus folles d'enlèvement organisé de l'intérieur ou de passage vers une autre dimension."
+        }
+      ],
+      "content": "👥 LA FAMILLE BELMONT ET LA VIE AU DOMAINE\n\nPropriétaires du Manoir de l'Ombre depuis les années 90, la famille Belmont est estimée de toute la communauté rurale locale. Jean Belmont (45 ans) est un notaire réputé pour son intégrité, tandis que son épouse Claire (42 ans) est une pianiste passionnée qui donne bénévolement des cours aux enfants du village. Leurs deux adolescents, Thomas (16 ans) et Emma (14 ans), mènent une scolarité exemplaire au collège régional. Sans aucune dette financière, conflit familial ou comportement suspect, rien ne laissait présager leur effroyable disparition.\n\n🕒 LA DERNIÈRE MÉLODIE DU 12 SEPTEMBRE\n\nLe soir du drame, vers 20h30, la voisine directe promène son chien le long des grilles du domaine. Elle aperçoit les fenêtres du grand salon éclairées d'une lueur chaleureuse et entend Claire interpréter au piano une sonate de Chopin particulièrement mélancolique. Tout semble paisible. À 21h00 précises, la musique s'arrête brusquement au milieu d'une mesure, laissant place à un silence pesant et inhabituel qui s'installe sur toute la propriété.\n\n💀 LE CONSTAT DE L'IMPOSSIBLE ÉVAPORATION\n\nInquiet de ne pas voir Jean Belmont se présenter à son étude le lendemain, son associé prévient les autorités. Accompagnés d'un serrurier, les policiers pénètrent dans le manoir. La scène qui les attend défie toute logique : sur la table de la salle à manger, quatre assiettes de soupe chaude sont servies, la nourriture est à moitié consommée, et les verres sont encore pleins. Les téléphones portables de toute la famille sont posés sur la console de l'entrée, leurs portefeuilles contenant papiers d'identité et cartes bancaires sont restés dans les vestes, et les deux véhicules familiaux sont garés dans le garage fermé à clé.\n\n🔬 UN MANOIR FERMÉ DE L'INTÉRIEUR\n\nLes enquêteurs scientifiques analysent les accès du manoir fortifié. Toutes les portes massives sont verrouillées à double tour de l'intérieur, les verrous des fenêtres de sécurité sont enclenchés, et le système d'alarme volumétrique haut de gamme est armé et actif. Aucune coupure de courant n'a été enregistrée et aucune présence étrangère n'a déclenché les capteurs thermiques intérieurs. L'examen de la vaisselle et de la nourriture ne révèle aucune trace de somnifères ni de substances chimiques d'endormissement.\n\n🎙️ LES RECHERCHES ET LES THÉORIES DE LA POLICE\n\nLes interrogatoires de l'entourage, des clients du cabinet de notaire et des camarades de classe de Thomas et Emma ne mènent à aucune piste. Les fouilles approfondies des parcs du domaine et des souterrains du manoir à l'aide de caméras thermiques et de chiens policiers ne révèlent rien. Vingt ans après les faits, la disparition de la famille Belmont demeure un dossier d'instruction ouvert, alimentant les théories les plus folles d'enlèvement organisé de l'intérieur ou de passage vers une autre dimension.",
+      "provenance": {
+        "commit": "c26b1b1adee4ed0a27041174c6b0d3a632898e34",
+        "path": "frontend/coldscases.html",
+        "blob": "08d3ad675fc80ea267294a5455531f4ee0e784f6",
+        "record_line": 120
+      },
+      "original_image": "images/cc3_main.jpg",
+      "gallery": [
+        {
+          "url": "images/cc3_manor.jpg",
+          "label": "La façade fortifiée du Manoir de l'Ombre"
+        },
+        {
+          "url": "images/cc3_piano.jpg",
+          "label": "Le piano à queue de Claire Belmont"
+        },
+        {
+          "url": "images/cc3_table.jpg",
+          "label": "Cliché judiciaire : La table dressée et intacte"
+        }
+      ],
+      "testimonies": [
+        {
+          "role": "Hélène Mercoeur (Voisine de la propriété)",
+          "text": "« Claire jouait divinement bien au piano tous les soirs. Ce soir-là, la note s'est arrêtée net, comme si ses mains avaient été arrachées du clavier d'un seul coup. C'était terrifiant. »"
+        },
+        {
+          "role": "Capitaine de Police Arthur Costa",
+          "text": "« Tout était fermé de l'intérieur. Pas de lutte, pas d'empreintes, de l'argent et des téléphones restés sur la table. C'est comme si ces quatre personnes s'étaient volatilisées en une fraction de seconde au milieu de leur repas. »"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Sébastien d'Enquêtes Criminelles — Le secret du Manoir Belmont",
+          "url": "https://www.youtube.com/results?search_query=famille+disparue+manoir+mystere"
+        },
+        {
+          "label": "L'Heure du Crime — L'évaporation de la famille Belmont",
+          "url": "https://www.youtube.com/results?search_query=disparition+belmont+manoir+ombre"
+        }
+      ]
+    }
+  ]
+}

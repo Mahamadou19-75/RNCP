@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Proposer une histoire — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html" aria-current="page">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="page-title">
+				<p class="eyebrow">PARTICIPER</p>
+				<h1>Proposer une histoire</h1>
+				<p>Proposez un dossier à l’équipe. Votre proposition sera examinée avant publication.</p>
+			</section>
+			<section class="section">
+				<form id="proposal-form" class="panel demo-form" method="post" aria-describedby="proposal-data-notice">
+					<p id="proposal-data-notice" class="data-notice"><strong>Envoi à l’administration.</strong> Votre titre, votre catégorie et votre présentation sont transmis aux administrateurs avec leur lien à votre compte. Cet envoi ne publie pas automatiquement une histoire. Évitez les informations privées inutiles concernant vous-même ou des tiers. L’information complète sur les traitements reste en préparation.</p>
+					<label for="titre">Titre</label>
+					<input id="titre" name="title" maxlength="200" required placeholder="Titre de votre histoire">
+					<label for="categorie">Catégorie</label>
+					<select id="categorie" name="category" required>
+						<option>Histoire</option>
+						<option>Cold case</option>
+					</select>
+					<label for="contenu">Présentation</label>
+					<textarea id="contenu" name="content" rows="7" required placeholder="Présentez votre dossier..."></textarea>
+					<button class="btn" type="submit" aria-describedby="proposal-data-notice">Proposer</button>
+					<p class="feedback" aria-live="polite"></p>
+				</form>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

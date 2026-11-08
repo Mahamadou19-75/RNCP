@@ -1,0 +1,3454 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Les Petits Enquêteurs API",
+    "version": "1.0.0",
+    "description": "Contrat des operations Flask existantes. Authentification par cookie de session Flask HttpOnly, etabli par POST /login. Le navigateur conserve le cookie ; les clients cross-origin doivent envoyer leurs credentials selon la configuration CORS. Le token CSRF est retourne par /login ou GET /me. X-CSRF-Token est requis pour POST/PUT/PATCH/DELETE quand user_id est present dans la session ; /login est exempte. Les chaines d'entree sont trimmees lorsqu'indique ; les mots de passe ne le sont pas. Les exceptions HTTP du framework sur /api/v1 renvoient un objet JSON status=error/message ; les erreurs metier existantes peuvent utiliser error. Un JSON absent, mal forme ou un type de media non JSON est habituellement normalise en 400 par les parseurs silencieux. HEAD et OPTIONS generes automatiquement par Flask ne sont pas des operations metier distinctes. Les listes actuelles ne sont pas paginees ; les likes repetes par un meme utilisateur restent possibles."
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Users"
+    },
+    {
+      "name": "Stories"
+    },
+    {
+      "name": "Comments"
+    },
+    {
+      "name": "Theories"
+    },
+    {
+      "name": "Proposals"
+    },
+    {
+      "name": "Reports"
+    },
+    {
+      "name": "Stats"
+    },
+    {
+      "name": "Documentation"
+    }
+  ],
+  "paths": {
+    "/admin/reports": {
+      "get": {
+        "operationId": "adminReports",
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Lister tous les signalements",
+        "description": "Lecture administrateur seule : commentaire ciblé, dossier et catégorie issus des relations SQL. Contexte indisponible explicite, sans réparation ni suppression de signalement. Aucun compteur modifié.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdminReport"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/admin/users/{username}/ban": {
+      "delete": {
+        "operationId": "banUser",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Bannir un utilisateur",
+        "description": "Definit uniquement is_banned=True ; compte et contributions conserves. Operation idempotente : un second ban renvoie 200. Tous les administrateurs sont proteges, y compris soi-meme (409). Entree historique par pseudo ; meme logique que la route par id.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BanUserSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          },
+          "409": {
+            "description": "Compte administrateur protege ; session de l auteur toujours valable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProtectedError"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/coldcases/{case_id}/updates": {
+      "get": {
+        "operationId": "coldCaseUpdates",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Lister les mises a jour d'une histoire cold case",
+        "description": "case_id designe Story.id dans le backend actuel. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ColdCaseUpdate"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "case_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/comments/{comment_id}/like": {
+      "post": {
+        "operationId": "likeComment",
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Ajouter mon like individuel au commentaire",
+        "description": "Un seul couple compte/commentaire. Compte actif et CSRF. Corps ignoré. Doublon ou historique non attribuable : 409. Aucun ancien compteur modifié. Succès après commit ; réponse perdue à vérifier sans renvoi automatique.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        },
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "operationId": "getCommentLike",
+        "summary": "Lire mon état de like du commentaire",
+        "description": "Compte actif. Cible et dossier actifs. Aucun corps requis. Réponse privée non stockable. Compteur historique ambigu : refus 409 sans conversion.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "État personnel relu depuis les données persistantes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeState"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "operationId": "removeCommentLike",
+        "summary": "Retirer mon like du commentaire",
+        "description": "Compte actif. Cible et dossier actifs. Aucun corps requis. Réponse privée non stockable. Compteur historique ambigu : refus 409 sans conversion.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "État personnel relu depuis les données persistantes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeRemoval"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          }
+        }
+      }
+    },
+    "/comments/{comment_id}/report": {
+      "post": {
+        "operationId": "reportComment",
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Signaler un commentaire",
+        "description": "Cree Report(type=comment, target_id=str(comment.id)). Les signalements repetes sont autorises. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentReportRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "operationId": "login",
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Ouvrir une session",
+        "description": "Public et exempte de CSRF, meme si une session existe deja. Retourne le cookie de session et le token CSRF.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "operationId": "logout",
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Fermer la session",
+        "description": "Vide la session. Une requete anonyme est acceptee sans token ; une session existante exige X-CSRF-Token. Aucun JSON requis.",
+        "security": [
+          {},
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "optional",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageSuccess"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "me",
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Lire l'utilisateur authentifie et son token CSRF",
+        "description": "",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/proposals": {
+      "get": {
+        "operationId": "proposals",
+        "tags": [
+          "Proposals"
+        ],
+        "summary": "Lister les propositions",
+        "description": "",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Proposal"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createProposal",
+        "tags": [
+          "Proposals"
+        ],
+        "summary": "Creer une proposition",
+        "description": "user_id provient de la session et status vaut pending. Tout user_id ou status fourni par le client est ignore.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProposalSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProposalRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports": {
+      "post": {
+        "operationId": "createReport",
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Signaler un commentaire par son identifiant",
+        "description": "Seul le type canonique comment est accepte. La cible doit exister ; target_id est stocke comme chaine decimale canonique. Les doublons sont autorises. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stats": {
+      "get": {
+        "operationId": "stats",
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Compter utilisateurs, commentaires et signalements",
+        "description": "Succes : vraies valeurs users/comments/reports. Erreur DB : 500 JSON sans compteurs, message Statistics unavailable. Agrégats globaux : commentaires et signalements conservés des archives inclus ; utilisateurs inchangés. Les totaux de dossiers actifs sont calculés depuis GET /stories.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stats"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/stories": {
+      "get": {
+        "operationId": "stories",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Lister les histoires et leurs votes",
+        "description": " Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Story"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/stories/slug/{slug}": {
+      "get": {
+        "operationId": "storyBySlug",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Lire une histoire par slug",
+        "description": " Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Story"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stories/{story_id}/comments": {
+      "get": {
+        "operationId": "comments",
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Lister les commentaires d'une histoire",
+        "description": " Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Comment"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "createComment",
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Creer un commentaire",
+        "description": "Auteur et username issus de la session ; les valeurs client correspondantes sont ignorees. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stories/{story_id}/theories": {
+      "get": {
+        "operationId": "theories",
+        "tags": [
+          "Theories"
+        ],
+        "summary": "Lister les theories d'une histoire",
+        "description": " Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Theory"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "post": {
+        "operationId": "createTheory",
+        "tags": [
+          "Theories"
+        ],
+        "summary": "Creer une theorie",
+        "description": "Auteur issu exclusivement de la session. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TheorySuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TheoryRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/swagger": {
+      "get": {
+        "operationId": "swaggerUi",
+        "tags": [
+          "Documentation"
+        ],
+        "summary": "Afficher Swagger UI",
+        "description": "Page HTML Swagger UI existante ; ses ressources CDN sont chargees par le navigateur, pas par les tests backend.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/swagger.json": {
+      "get": {
+        "operationId": "swaggerDocument",
+        "tags": [
+          "Documentation"
+        ],
+        "summary": "Lire le document OpenAPI",
+        "description": "Document de cette API, au format OpenAPI 3.0.3.",
+        "security": [],
+        "x-session-auth": "public",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/theories/{theory_id}/like": {
+      "post": {
+        "operationId": "likeTheory",
+        "tags": [
+          "Theories"
+        ],
+        "summary": "Incrementer les likes d'une theorie",
+        "description": "UPDATE SQL atomique du compteur. Aucun JSON lu. Les likes repetes du meme utilisateur sont actuellement autorises. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TheorySuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "theory_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "users",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Lister tous les utilisateurs",
+        "description": "Liste triee par id, reservee aux administrateurs. Inclut is_banned ; aucun hachage ni jeton de session.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdminUser"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "signup",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Inscrire un utilisateur",
+        "description": "Inscription publique. Si une session existe, CSRF et controle du compte s'appliquent. Les roles fournis par le client sont ignores ; le nouveau compte n'est pas admin.",
+        "security": [
+          {},
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "optional",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/votes/{story_id}": {
+      "post": {
+        "operationId": "vote",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Voter pour une histoire",
+        "description": "Un seul vote par utilisateur et histoire. Aucun JSON requis ; le corps n'est pas lu. Les dossiers archivés sont masqués : accès et contributions publics refusés avec 404, y compris par identifiant de commentaire ou théorie.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "responses": {
+          "201": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VoteSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "operationId": "getStoryLike",
+        "summary": "Lire mon état de like du dossier",
+        "description": "Compte actif. Cible et dossier actifs. Aucun corps requis. Réponse privée non stockable. Les votes historiques restent des likes binaires, sans conversion.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "État personnel relu depuis les données persistantes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeState"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stories"
+        ],
+        "parameters": [
+          {
+            "name": "story_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": false,
+        "operationId": "removeStoryLike",
+        "summary": "Retirer mon like du dossier",
+        "description": "Compte actif. Cible et dossier actifs. Aucun corps requis. Réponse privée non stockable. Les votes historiques restent des likes binaires, sans conversion.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "État personnel relu depuis les données persistantes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LikeRemoval"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        }
+      }
+    },
+    "/admin/users/{user_id}/ban": {
+      "post": {
+        "operationId": "banUserById",
+        "tags": [
+          "Users"
+        ],
+        "summary": "Bannir un utilisateur ordinaire par identifiant",
+        "description": "Definit is_banned=True sans toucher aux contributions. Aucun corps JSON requis. Session administrateur et CSRF obligatoires. Tous les administrateurs sont proteges (409). Idempotente ; aucun debannissement.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BanUserSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          },
+          "409": {
+            "description": "Compte administrateur protege ; session de l auteur toujours valable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminProtectedError"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            }
+          }
+        ]
+      }
+    },
+    "/admin/stories": {
+      "get": {
+        "operationId": "adminStories",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Lister les dossiers actifs ou archivés",
+        "description": "Administrateur relu en base, compte banni refusé. Archives privées : Cache-Control no-store. Aucune suppression. Les routes publiques continuent de refuser les archives, y compris pour un administrateur.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdminStory"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "archived",
+                "all"
+              ],
+              "default": "active"
+            }
+          }
+        ]
+      }
+    },
+    "/admin/stories/{story_id}": {
+      "get": {
+        "operationId": "adminStory",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Consulter un dossier et ses contributions conservées",
+        "description": "Administrateur relu en base, compte banni refusé. Archives privées : Cache-Control no-store. Aucune suppression. Les routes publiques continuent de refuser les archives, y compris pour un administrateur.",
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminStoryDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            },
+            "description": "Identifiant stable ; hors domaine ou absent : 404."
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "deleteStoryPermanently",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Supprimer un dossier deja archive",
+        "description": "Admin actif relu en base. FK et moteur verifies. Cache-Control no-store. Confirmation signee liee a la session, revision aleatoire et empreinte du graphe; validite totale 300 secondes. Aucune table de recus ni journal persistant. Aucun DELETE automatique apres timeout; relire GET /admin/stories/{story_id}. Un 404 constate une absence sans attribuer la suppression. Une erreur pendant COMMIT peut donner 503 DELETE_STATUS_UNKNOWN meme si la suppression a ete validee. Aucun corps pour DELETE. Les preconditions manquantes sont 428, perimees 412, dossier actif 409. Limite 10000 dependances. Le CSRF global peut refuser avant la vue.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            }
+          },
+          {
+            "in": "header",
+            "name": "If-Match",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^\"[0-9a-f]{64}\"$"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Deletion-Confirmation",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 4096
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletionSuccess"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "428": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/stories/{story_id}/archive": {
+      "post": {
+        "operationId": "archiveStory",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Archiver un dossier de façon réversible",
+        "description": "Administrateur relu en base, compte banni refusé. Archives privées : Cache-Control no-store. Aucune suppression. Transaction et rollback ; même état répété : 200 changed=false. Aucun corps JSON requis. La date originale reste inchangée lors d'un archivage répété. Un échec réseau impose une relecture, sans relance automatique.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            },
+            "description": "Identifiant stable ; hors domaine ou absent : 404."
+          }
+        ]
+      }
+    },
+    "/admin/stories/{story_id}/restore": {
+      "post": {
+        "operationId": "restoreStory",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Restaurer un dossier archivé",
+        "description": "Administrateur relu en base, compte banni refusé. Archives privées : Cache-Control no-store. Aucune suppression. Transaction et rollback ; même état répété : 200 changed=false. Aucun corps JSON requis. La date originale reste inchangée lors d'un archivage répété. Un échec réseau impose une relecture, sans relance automatique.",
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArchiveSuccess"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/ServerError"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            },
+            "description": "Identifiant stable ; hors domaine ou absent : 404."
+          }
+        ]
+      }
+    },
+    "/admin/stories/{story_id}/deletion-preview": {
+      "get": {
+        "operationId": "storyDeletionPreview",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Apercu de suppression definitive",
+        "description": "Admin actif relu en base. FK et moteur verifies. Cache-Control no-store. Confirmation signee liee a la session, revision aleatoire et empreinte du graphe; validite totale 300 secondes. Aucune table de recus ni journal persistant. Aucun DELETE automatique apres timeout; relire GET /admin/stories/{story_id}. Un 404 constate une absence sans attribuer la suppression. Une erreur pendant COMMIT peut donner 503 DELETE_STATUS_UNKNOWN meme si la suppression a ete validee. Aucun corps pour DELETE. Les preconditions manquantes sont 428, perimees 412, dossier actif 409. Limite 10000 dependances. Le CSRF global peut refuser avant la vue.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletionPreview"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/stories/{story_id}/deletion-confirmations": {
+      "post": {
+        "operationId": "confirmStoryDeletion",
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Confirmation renforcee du titre et des contributions",
+        "description": "Admin actif relu en base. FK et moteur verifies. Cache-Control no-store. Confirmation signee liee a la session, revision aleatoire et empreinte du graphe; validite totale 300 secondes. Aucune table de recus ni journal persistant. Aucun DELETE automatique apres timeout; relire GET /admin/stories/{story_id}. Un 404 constate une absence sans attribuer la suppression. Une erreur pendant COMMIT peut donner 503 DELETE_STATUS_UNKNOWN meme si la suppression a ete validee. Aucun corps pour DELETE. Les preconditions manquantes sont 428, perimees 412, dossier actif 409. Limite 10000 dependances. Le CSRF global peut refuser avant la vue.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 2147483647
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": [],
+            "csrfToken": []
+          }
+        ],
+        "x-session-auth": "required",
+        "x-admin-required": true,
+        "responses": {
+          "200": {
+            "description": "Succes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletionConfirmation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "428": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Erreur explicite sans detail sensible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeletionConfirmationRequest"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "session",
+        "description": "Cookie de session Flask signe, gere par le navigateur apres login."
+      },
+      "csrfToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-CSRF-Token",
+        "description": "Token CSRF de /login ou /me. Requis sur les ecritures avec session, sauf /login."
+      }
+    },
+    "schemas": {
+      "ApiError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      },
+      "LegacyError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      },
+      "Error": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ApiError"
+          },
+          {
+            "$ref": "#/components/schemas/LegacyError"
+          }
+        ]
+      },
+      "AuthUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "is_admin": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "username",
+          "email",
+          "is_admin"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "is_admin": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "username",
+          "email",
+          "is_admin",
+          "created_at"
+        ]
+      },
+      "Session": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/AuthUser"
+          },
+          "csrf_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "user",
+          "csrf_token"
+        ]
+      },
+      "LoginSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/AuthUser"
+          },
+          "csrf_token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "user",
+          "csrf_token"
+        ]
+      },
+      "MessageSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "message"
+        ]
+      },
+      "Stats": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "comments": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reports": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "users",
+          "comments",
+          "reports"
+        ]
+      },
+      "Story": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "author_id": {
+            "type": "integer"
+          },
+          "votes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "summary",
+          "content",
+          "image_url",
+          "category_id",
+          "author_id",
+          "votes",
+          "created_at"
+        ]
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "story_id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "integer"
+          },
+          "reports": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Nombre calcule par lecture de Report(type=comment, target_id=id). Aucune colonne comments.reports."
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "likes_compatible": {
+            "type": "boolean",
+            "description": "False si le compteur historique ne permet pas des likes individuels ; valeur historique conservée."
+          }
+        },
+        "required": [
+          "id",
+          "story_id",
+          "user_id",
+          "username",
+          "text",
+          "likes",
+          "reports",
+          "created_at"
+        ]
+      },
+      "Theory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "story_id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "story_id",
+          "user_id",
+          "title",
+          "content",
+          "likes",
+          "created_at"
+        ]
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "comment"
+            ]
+          },
+          "target_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "target_id",
+          "reason",
+          "status",
+          "created_at"
+        ]
+      },
+      "Proposal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "user_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "Les nouvelles propositions sont creees avec pending."
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "user_id",
+          "title",
+          "content",
+          "status",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "ColdCaseUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "story_id": {
+            "type": "integer"
+          },
+          "content": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          }
+        },
+        "required": [
+          "id",
+          "story_id",
+          "content",
+          "created_at"
+        ]
+      },
+      "VoteSuccess": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "votes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "message",
+          "votes"
+        ]
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Chaine trimee non vide ; UTF-8 valide."
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Mot de passe conserve exactement, sans trim ; UTF-8 valide."
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "SignupRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Chaine trimee non vide."
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150,
+            "format": "email",
+            "description": "Email ASCII trime ; partie locale <=64 caracteres ; domaine avec point et labels <=63 caracteres."
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 50,
+            "description": "Sans trim. Au moins une majuscule ASCII, une minuscule ASCII, un chiffre ASCII et un caractere special accepte par le validateur serveur."
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "password"
+        ]
+      },
+      "CommentRequest": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65535,
+            "description": "Chaine trimee non vide, UTF-8 valide, au plus 65535 octets UTF-8.",
+            "x-max-utf8-bytes": 65535
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "TheoryRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Titre trime non vide."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65535,
+            "description": "Chaine trimee non vide, UTF-8 valide, au plus 65535 octets UTF-8.",
+            "x-max-utf8-bytes": 65535
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      },
+      "ProposalRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Titre trime non vide."
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65535,
+            "description": "Chaine trimee non vide, UTF-8 valide, au plus 65535 octets UTF-8.",
+            "x-max-utf8-bytes": 65535
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ]
+      },
+      "CommentReportRequest": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 65535,
+            "description": "Chaine trimee non vide, UTF-8 valide, au plus 65535 octets UTF-8.",
+            "x-max-utf8-bytes": 65535
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "ReportRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "comment"
+            ],
+            "description": "Valeur canonique apres trim. Seuls les commentaires sont signalables actuellement."
+          },
+          "target_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Apres trim : entier decimal ASCII positif <=2147483647, fourni en chaine. Les zeros initiaux sont retires avant stockage."
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Chaine trimee non vide. Cette route ne comporte pas de controle explicite de longueur avant la transaction."
+          }
+        },
+        "required": [
+          "type",
+          "target_id",
+          "reason"
+        ]
+      },
+      "UserSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "required": [
+          "status",
+          "user"
+        ]
+      },
+      "CommentSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "comment": {
+            "$ref": "#/components/schemas/Comment"
+          }
+        },
+        "required": [
+          "status",
+          "comment"
+        ]
+      },
+      "TheorySuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "theory": {
+            "$ref": "#/components/schemas/Theory"
+          }
+        },
+        "required": [
+          "status",
+          "theory"
+        ]
+      },
+      "ReportSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "report": {
+            "$ref": "#/components/schemas/Report"
+          }
+        },
+        "required": [
+          "status",
+          "report"
+        ]
+      },
+      "ProposalSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "proposal": {
+            "$ref": "#/components/schemas/Proposal"
+          }
+        },
+        "required": [
+          "status",
+          "proposal"
+        ]
+      },
+      "AdminUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "is_admin": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "is_banned": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "username",
+          "email",
+          "is_admin",
+          "created_at",
+          "is_banned"
+        ],
+        "description": "Representation administrative uniquement ; is_banned absent des reponses publiques."
+      },
+      "BanUserSuccess": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/AdminUser"
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "user"
+        ]
+      },
+      "AdminProtectedError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "error"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "ADMIN_PROTECTED"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "code"
+        ]
+      },
+      "AdminStory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "author_id": {
+            "type": "integer"
+          },
+          "votes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "archived_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date UTC ISO 8601 sans suffixe ; NULL signifie actif."
+          },
+          "management_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "summary",
+          "content",
+          "image_url",
+          "category_id",
+          "author_id",
+          "votes",
+          "created_at",
+          "is_archived",
+          "archived_at",
+          "updated_at",
+          "management_revision"
+        ]
+      },
+      "AdminStoryDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "category_id": {
+            "type": "integer"
+          },
+          "author_id": {
+            "type": "integer"
+          },
+          "votes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "updated_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "archived_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date UTC ISO 8601 sans suffixe ; NULL signifie actif."
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Comment"
+            }
+          },
+          "theories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Theory"
+            }
+          },
+          "updates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ColdCaseUpdate"
+            }
+          },
+          "management_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{32}$"
+          }
+        },
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "summary",
+          "content",
+          "image_url",
+          "category_id",
+          "author_id",
+          "votes",
+          "created_at",
+          "is_archived",
+          "archived_at",
+          "updated_at",
+          "comments",
+          "theories",
+          "updates",
+          "management_revision"
+        ]
+      },
+      "ArchiveSuccess": {
+        "type": "object",
+        "required": [
+          "status",
+          "changed",
+          "story"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "changed": {
+            "type": "boolean",
+            "description": "false si le dossier était déjà dans cet état."
+          },
+          "story": {
+            "$ref": "#/components/schemas/AdminStory"
+          }
+        }
+      },
+      "DeletionCounts": {
+        "type": "object",
+        "required": [
+          "comments",
+          "theories",
+          "votes",
+          "updates",
+          "reports"
+        ],
+        "properties": {
+          "comments": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "theories": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "votes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "updates": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "reports": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "DeletionPreview": {
+        "type": "object",
+        "required": [
+          "story",
+          "impact",
+          "resource_etag",
+          "preview_token",
+          "expires_at"
+        ],
+        "properties": {
+          "story": {
+            "type": "object",
+            "required": [
+              "id",
+              "title",
+              "management_revision"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "management_revision": {
+                "type": "string"
+              }
+            }
+          },
+          "impact": {
+            "$ref": "#/components/schemas/DeletionCounts"
+          },
+          "resource_etag": {
+            "type": "string"
+          },
+          "preview_token": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DeletionConfirmationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "preview_token",
+          "typed_title",
+          "confirm_contributions"
+        ],
+        "properties": {
+          "preview_token": {
+            "type": "string",
+            "maxLength": 4096
+          },
+          "typed_title": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "confirm_contributions": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        }
+      },
+      "DeletionConfirmation": {
+        "type": "object",
+        "required": [
+          "status",
+          "confirmation_token",
+          "expires_at"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "confirmation_token": {
+            "type": "string"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DeletionSuccess": {
+        "type": "object",
+        "required": [
+          "status",
+          "code",
+          "deleted_story",
+          "deleted_counts"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "STORY_DELETED"
+            ]
+          },
+          "deleted_story": {
+            "type": "object",
+            "required": [
+              "id",
+              "management_revision"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "management_revision": {
+                "type": "string"
+              }
+            }
+          },
+          "deleted_counts": {
+            "$ref": "#/components/schemas/DeletionCounts"
+          }
+        }
+      },
+      "LikeState": {
+        "type": "object",
+        "required": [
+          "status",
+          "target_type",
+          "target_id",
+          "likes",
+          "liked_by_me"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "target_type": {
+            "type": "string",
+            "enum": [
+              "story",
+              "comment"
+            ]
+          },
+          "target_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "likes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "liked_by_me": {
+            "type": "boolean"
+          }
+        }
+      },
+      "LikeRemoval": {
+        "type": "object",
+        "required": [
+          "status",
+          "target_type",
+          "target_id",
+          "likes",
+          "liked_by_me",
+          "changed"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "success"
+            ]
+          },
+          "target_type": {
+            "type": "string",
+            "enum": [
+              "story",
+              "comment"
+            ]
+          },
+          "target_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "likes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "liked_by_me": {
+            "type": "boolean"
+          },
+          "changed": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AdminReportedComment": {
+        "type": "object",
+        "nullable": true,
+        "required": [
+          "id",
+          "story_id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "story_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "AdminReportedStory": {
+        "type": "object",
+        "nullable": true,
+        "required": [
+          "id",
+          "slug",
+          "title",
+          "category_id",
+          "category_name",
+          "is_archived"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "slug": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "category_id": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "category_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "is_archived": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AdminReport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "comment"
+            ]
+          },
+          "target_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "nullable": true,
+            "description": "Date ISO 8601 telle que renvoyee par le modele actuel, sans fuseau explicite."
+          },
+          "comment": {
+            "$ref": "#/components/schemas/AdminReportedComment"
+          },
+          "story": {
+            "$ref": "#/components/schemas/AdminReportedStory"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "target_id",
+          "reason",
+          "status",
+          "created_at",
+          "comment",
+          "story"
+        ]
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Corps JSON, champs ou valeurs invalides ; doublon username/email pour inscription.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Authentification requise ou utilisateur de session introuvable ; identifiants incorrects pour login.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Acces refuse selon la route : CSRF invalide, compte banni ou droits administrateur absents.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Ressource ou chemin introuvable.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "MethodNotAllowed": {
+        "description": "Methode non autorisee ; le header Allow est conserve.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        },
+        "headers": {
+          "Allow": {
+            "description": "Methodes autorisees sur le chemin demande.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "Un vote existe deja pour cet utilisateur et cette histoire, y compris conflit unique concurrent.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "UnsupportedMediaType": {
+        "description": "Exception framework de type de media non supporte. Les parseurs JSON silencieux normalisent habituellement les corps invalides en 400.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "ServerError": {
+        "description": "Erreur serveur generique, sans detail SQL brut. Stats renvoie une erreur sans compteurs.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "x-framework-errors": {
+    "400": {
+      "$ref": "#/components/responses/BadRequest"
+    },
+    "404": {
+      "$ref": "#/components/responses/NotFound"
+    },
+    "405": {
+      "$ref": "#/components/responses/MethodNotAllowed"
+    },
+    "415": {
+      "$ref": "#/components/responses/UnsupportedMediaType"
+    },
+    "500": {
+      "$ref": "#/components/responses/ServerError"
+    }
+  }
+}

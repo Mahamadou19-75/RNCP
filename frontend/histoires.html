@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Histoires — Les Petits Enquêteurs</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="top">
+				<a class="logo" href="index.html">◈ LES PETITS <span>ENQUÊTEURS</span></a>
+				<div id="session-controls" role="group" aria-label="Compte utilisateur" aria-busy="true">
+					<a class="outline" href="connexion.html">Connexion</a>
+				</div>
+			</div>
+			<nav class="nav" aria-label="Navigation principale">
+				<a href="index.html">Accueil</a>
+				<a href="histoires.html" aria-current="page">Histoires</a>
+				<a href="coldcases.html">Cold Cases</a>
+				<a href="theories.html">Analyse & Théories</a>
+				<a href="proposer-histoire.html">Proposer une histoire</a>
+			</nav>
+		</header>
+		<main>
+			<p id="session-feedback" class="feedback session-feedback" role="status"></p>
+			<section class="page-title">
+				<p class="eyebrow">DOSSIERS</p>
+				<h1>Les histoires</h1>
+				<p>Retrouvez les histoires résolues disponibles.</p>
+			</section>
+			<section class="section">
+				<label for="recherche">Rechercher une histoire</label>
+				<input id="recherche" type="search" placeholder="Rechercher par titre ou mot-clé...">
+				<p id="stories-feedback" class="feedback" aria-live="polite"></p>
+				<div id="histoires-cartes" class="cards" data-story-type="resolved"></div>
+				<p id="aucun-resultat" hidden>Aucun dossier ne correspond à cette recherche.</p>
+			</section>
+		</main>
+		<footer>
+			Les Petits Enquêteurs · Projet étudiant
+			<a href="admin-connexion.html">Administration</a>
+		</footer>
+		<script src="api.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

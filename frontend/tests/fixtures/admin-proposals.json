@@ -1,0 +1,6 @@
+[
+  {"id": 1, "user_id": 1, "title": "Piste fictive récente", "content": "Données exclusivement fictives.", "status": "pending", "created_at": "2026-10-30T10:00:00", "updated_at": "2026-10-30T10:00:00"},
+  {"id": 2, "user_id": 1, "title": "Proposition fictive acceptée", "content": "Aucune publication automatique.", "status": "approved", "created_at": "2026-10-29T10:00:00", "updated_at": "2026-10-29T10:00:00"},
+  {"id": 3, "user_id": 1, "title": "Autre piste fictive", "content": "Deuxième attente.", "status": "pending", "created_at": "2026-10-28T10:00:00", "updated_at": "2026-10-28T10:00:00"},
+  {"id": 4, "user_id": 1, "title": "Proposition fictive refusée", "content": "Cas de statut différent.", "status": "rejected", "created_at": "2026-10-27T10:00:00", "updated_at": "2026-10-27T10:00:00"}
+]
